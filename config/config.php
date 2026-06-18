@@ -19,10 +19,31 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Database Credentials
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'lurnixe_health');
+if (php_sapi_name() === 'cli') {
+    if (strpos(__DIR__, 'xampp') !== false) {
+        define('DB_HOST', 'localhost');
+        define('DB_USER', 'root');
+        define('DB_PASS', '');
+        define('DB_NAME', 'lurnixe_health');
+    } else {
+        define('DB_HOST', 'localhost');
+        define('DB_USER', 'u894958506_admin');
+        define('DB_PASS', 'LURNIX@313Office');
+        define('DB_NAME', 'u894958506_lurnixehealth');
+    }
+} else {
+    if (isset($_SERVER['HTTP_HOST']) && ($_SERVER['HTTP_HOST'] === 'localhost' || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') === 0)) {
+        define('DB_HOST', 'localhost');
+        define('DB_USER', 'root');
+        define('DB_PASS', '');
+        define('DB_NAME', 'lurnixe_health');
+    } else {
+        define('DB_HOST', 'localhost');
+        define('DB_USER', 'u894958506_admin');
+        define('DB_PASS', 'LURNIX@313Office');
+        define('DB_NAME', 'u894958506_lurnixehealth');
+    }
+}
 
 // Application Settings
 define('SITE_NAME', 'LurnixeHealth');
