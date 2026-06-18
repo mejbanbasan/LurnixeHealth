@@ -1,0 +1,225 @@
+/**
+ * Lurnixe Health Card System - Secure Admin Custom Theme
+ * June 2026
+ */
+
+:root {
+    --admin-sidebar-bg: #111c24;
+    --admin-sidebar-hover: #1b2a35;
+    --admin-active-menu: #1A5276;
+    --kpi-card-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    
+    --primary-blue: #1A5276;
+    --primary-green: #27AE60;
+    --danger-red: #E74C3C;
+    --warning-orange: #E67E22;
+    --warning-yellow: #F1C40F;
+    --body-bg: #f4f6f9;
+    
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: var(--body-bg);
+    font-family: var(--font-body);
+    overflow: hidden; /* Prevent body scroll because sidebar/main-content handle scrolling */
+}
+
+/* ════════════════════════════════════════
+   sidebar & Layout Styles
+   ════════════════════════════════════════ */
+
+.sidebar {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1000;
+    width: 260px;
+    background-color: var(--admin-sidebar-bg) !important;
+    transition: left 0.3s ease;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.main-content {
+    margin-left: 260px;
+    height: 100vh;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+    background-color: var(--body-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-brand-box {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Sidebar Scrollbar styling */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+.sidebar::-webkit-scrollbar-track {
+    background: var(--admin-sidebar-bg);
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+/* Sidebar Menu Items */
+.sidebar .list-group-item {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ffffff !important;
+    transition: all 0.25s ease;
+    margin-bottom: 4px;
+    border-radius: 8px !important;
+    border: none !important;
+}
+
+.sidebar .list-group-item:hover {
+    background-color: var(--admin-sidebar-hover) !important;
+    color: #ffffff !important;
+    padding-left: 1.5rem !important;
+}
+
+.sidebar .list-group-item.active-sidebar {
+    background-color: var(--admin-active-menu) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(26, 82, 118, 0.25);
+    border-left: 4px solid var(--primary-green) !important;
+}
+
+/* Sidebar Section Headers */
+.sidebar small.text-muted {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* ════════════════════════════════════════
+   KPI Stats Cards
+   ════════════════════════════════════════ */
+
+.kpi-card {
+    border-radius: 14px;
+    border: none;
+    background-color: #FFFFFF;
+    box-shadow: var(--kpi-card-shadow);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-left: 4px solid transparent;
+}
+
+.kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.kpi-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+}
+
+/* Background utilities for icons */
+.bg-light-blue {
+    background-color: rgba(26, 82, 118, 0.08) !important;
+    color: var(--primary-blue) !important;
+}
+.bg-light-green {
+    background-color: rgba(39, 174, 96, 0.08) !important;
+    color: var(--primary-green) !important;
+}
+.bg-light-warning {
+    background-color: rgba(230, 126, 34, 0.08) !important;
+    color: var(--warning-orange) !important;
+}
+.bg-light-danger {
+    background-color: rgba(231, 76, 60, 0.08) !important;
+    color: var(--danger-red) !important;
+}
+
+/* ════════════════════════════════════════
+   General Card & Tables Styling
+   ════════════════════════════════════════ */
+
+.table-card {
+    background-color: #FFFFFF;
+    border-radius: 14px;
+    border: none;
+    box-shadow: var(--kpi-card-shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.badge-active {
+    background-color: rgba(39, 174, 96, 0.1) !important;
+    color: var(--primary-green) !important;
+}
+
+.badge-expired {
+    background-color: rgba(230, 126, 34, 0.1) !important;
+    color: var(--warning-orange) !important;
+}
+
+.badge-suspended {
+    background-color: rgba(241, 196, 15, 0.1) !important;
+    color: #b78a02 !important;
+}
+
+.badge-deactivated {
+    background-color: rgba(231, 76, 60, 0.1) !important;
+    color: var(--danger-red) !important;
+}
+
+/* Avatar Table images */
+.avatar-table-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.font-code {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+.font-heading {
+    font-family: var(--font-heading);
+}
+
+/* Log Detail styling */
+.log-detail-box {
+    font-size: 0.85rem;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 3px solid var(--primary-blue);
+    word-break: break-word;
+}
+
+/* ════════════════════════════════════════
+   Responsive Queries
+   ════════════════════════════════════════ */
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        left: -260px; /* Hide sidebar */
+    }
+    .sidebar.active {
+        left: 0; /* Show sidebar */
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}

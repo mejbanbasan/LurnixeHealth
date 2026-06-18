@@ -1,0 +1,27 @@
+# Lurnixe Health Card System - Apache Security Configuration
+# June 2026
+
+# Disable directory browsing
+Options -Indexes
+
+# Set Security Headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header set X-Frame-Options "DENY"
+    
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Control referrer information
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Enable XSS protection in legacy browsers
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Configure PHP upload settings (fallback if allowed by hosting config)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 2M
+    php_value post_max_size 8M
+    php_value session.gc_maxlifetime 7200
+</IfModule>

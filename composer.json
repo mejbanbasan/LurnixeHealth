@@ -1,0 +1,7 @@
+{
+    "require": {
+        "fpdf/fpdf": "^1.86",
+        "aferrandini/phpqrcode": "^1.0",
+        "tecnickcom/tcpdf": "^6.11"
+    }
+}

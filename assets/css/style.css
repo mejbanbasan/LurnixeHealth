@@ -1,0 +1,359 @@
+/**
+ * Lurnixe Health Card System - Public Custom Theme
+ * June 2026
+ */
+
+/* Root variables for our design system */
+:root {
+    --primary-blue: #1A5276;
+    --primary-blue-hover: #154360;
+    --primary-green: #27AE60;
+    --primary-green-hover: #219653;
+    --light-blue: #D6EAF8;
+    --light-green: #D5F5E3;
+    --dark-text: #1C2833;
+    --body-bg: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --danger-red: #E74C3C;
+    --warning-orange: #E67E22;
+    --muted-gray: #7F8C8D;
+    --border-color: #E5E8E8;
+    
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --font-code: 'Courier New', Courier, monospace;
+}
+
+/* Global Styles */
+body {
+    font-family: var(--font-body);
+    color: var(--dark-text);
+    background-color: var(--body-bg);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* Top info bar styling */
+.top-info-bar {
+    background-color: var(--primary-blue);
+    font-size: 0.85rem;
+    font-family: var(--font-heading);
+}
+
+/* Brand Logo Styling */
+.brand-logo-container {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-blue);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover .brand-logo-container {
+    transform: rotate(15deg);
+}
+
+.brand-icon {
+    color: #FFFFFF;
+    font-size: 1.4rem;
+}
+
+.brand-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.1;
+    color: var(--primary-blue);
+}
+
+.brand-tagline {
+    font-size: 0.65rem;
+    color: var(--muted-gray);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* Navbar Nav Links */
+.navbar-nav .nav-link {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--dark-text);
+    padding: 0.5rem 1rem !important;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover, 
+.navbar-nav .nav-link.active {
+    color: var(--primary-blue);
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 1rem;
+    background-color: var(--primary-green);
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: calc(100% - 2rem);
+}
+
+/* Buttons Design */
+.btn {
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-blue-hover);
+    border-color: var(--primary-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+}
+
+.btn-success {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.btn-success:hover {
+    background-color: var(--primary-green-hover);
+    border-color: var(--primary-green-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.btn-outline-primary {
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-blue);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #EBF5FB 0%, #E8F8F5 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(39, 174, 96, 0.05);
+    border-radius: 50%;
+    top: -50px;
+    right: -50px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--muted-gray);
+    margin-bottom: 2rem;
+}
+
+/* Cards System */
+.custom-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Feature Icons */
+.feature-icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.bg-light-blue {
+    background-color: var(--light-blue);
+    color: var(--primary-blue);
+}
+
+.bg-light-green {
+    background-color: var(--light-green);
+    color: var(--primary-green);
+}
+
+.bg-light-danger {
+    background-color: #FADBD8;
+    color: var(--danger-red);
+}
+
+.bg-light-warning {
+    background-color: #FDEBD0;
+    color: var(--warning-orange);
+}
+
+/* Stats Section */
+.stats-section {
+    background-color: #FFFFFF;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.02);
+    margin-top: -50px;
+    position: relative;
+    z-index: 10;
+    border-radius: 15px;
+}
+
+.stat-item {
+    border-right: 1px solid var(--border-color);
+}
+
+.stat-item:last-child {
+    border-right: none;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+}
+
+/* How It Works Section */
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-green);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+}
+
+/* QR Code Scan Profile Page */
+.qr-profile-card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.qr-profile-header {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%);
+    padding: 30px;
+    text-align: center;
+}
+
+.qr-profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #FFFFFF;
+    object-fit: cover;
+    margin-top: -60px;
+    background-color: #FFFFFF;
+}
+
+/* Badges */
+.badge-active {
+    background-color: var(--primary-green);
+    color: #FFFFFF;
+}
+
+.badge-expired {
+    background-color: var(--warning-orange);
+    color: #FFFFFF;
+}
+
+.badge-suspended {
+    background-color: #F1C40F;
+    color: #FFFFFF;
+}
+
+.badge-deactivated {
+    background-color: var(--danger-red);
+    color: #FFFFFF;
+}
+
+/* Social links hover */
+.hover-white:hover {
+    color: #FFFFFF !important;
+}
+
+/* Sticky top navbar glassmorphism fallback */
+@supports (backdrop-filter: blur(10px)) {
+    .navbar.sticky-top {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(10px);
+    }
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 991.98px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .stats-section {
+        margin-top: 0;
+    }
+    
+    .stat-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .stat-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+}
