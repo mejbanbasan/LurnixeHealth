@@ -10,12 +10,40 @@ require_once __DIR__ . '/includes/header.php';
 <!-- Hero Section -->
 <section class="hero-section p-0 bg-transparent mb-4">
     <div class="container">
-        <div class="position-relative w-100 d-inline-block rounded-4 overflow-hidden shadow-sm" data-aos="zoom-in">
+        <!-- Desktop/Tablet View (Screens >= 768px) -->
+        <div class="d-none d-md-block position-relative w-100 rounded-4 overflow-hidden shadow-sm animate__animated animate__fadeIn" data-aos="zoom-in">
             <img src="<?php echo BASE_URL; ?>assets/images/landing_hero.jpg" alt="LurnixeHealth Banner" class="w-100 h-auto d-block">
             <!-- Clickable Overlay for Apply for Health Card -->
             <a href="<?php echo BASE_URL; ?>health-card.php" class="position-absolute" style="left: 5.4%; top: 72.3%; width: 17.6%; height: 8.6%; z-index: 10;" title="Apply for Health Card"></a>
             <!-- Clickable Overlay for Book Appointment -->
             <a href="<?php echo BASE_URL; ?>services.php" class="position-absolute" style="left: 24%; top: 72.3%; width: 15.6%; height: 8.6%; z-index: 10;" title="Book Appointment"></a>
+        </div>
+
+        <!-- Mobile View (Screens < 768px) -->
+        <div class="d-block d-md-none" data-aos="zoom-in">
+            <!-- Responsive Banner Image (Full Visibility, No Crop) -->
+            <div class="position-relative w-100 rounded-4 overflow-hidden shadow-sm mb-3">
+                <img src="<?php echo BASE_URL; ?>assets/images/landing_hero.jpg" alt="LurnixeHealth Banner" class="w-100 h-auto d-block">
+            </div>
+            <!-- Mobile-Optimized Typography and Touch-Friendly Action Buttons -->
+            <div class="mobile-hero-card">
+                <div class="mb-2">
+                    <span class="fw-bold fs-5 text-dark" style="display: inline-flex; align-items: center;">
+                        <i class="fa-solid fa-heart-pulse text-success me-2 fs-4"></i>
+                        <span style="color:#2C3E50; font-weight: 800;">Lurnixe</span><span style="color:#27AE60; font-weight: 800;">Health</span>
+                    </span>
+                </div>
+                <h1 class="mb-2">Your Health.<br>Our Priority. Always.</h1>
+                <p class="mb-4">Manage your health records, book appointments, and connect with trusted healthcare providers — all in one place.</p>
+                <div class="d-grid gap-2">
+                    <a href="<?php echo BASE_URL; ?>health-card.php" class="btn btn-success text-white">
+                        <i class="fa-solid fa-address-card me-2"></i>Apply for Health Card
+                    </a>
+                    <a href="<?php echo BASE_URL; ?>services.php" class="btn btn-primary text-white">
+                        <i class="fa-solid fa-calendar-check me-2"></i>Book Appointment
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>

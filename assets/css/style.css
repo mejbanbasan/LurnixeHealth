@@ -357,3 +357,36 @@ h1, h2, h3, h4, h5, h6 {
         margin-bottom: 0;
     }
 }
+
+/* Mobile Hero Card Enhancement */
+.mobile-hero-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+}
+.mobile-hero-card h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #2C3E50;
+}
+.mobile-hero-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #7F8C8D;
+}
+.mobile-hero-card .btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.15);
+    transition: all 0.2s ease;
+}
+.mobile-hero-card .btn-primary {
+    box-shadow: 0 4px 12px rgba(41, 128, 185, 0.15);
+}
+.mobile-hero-card .btn:active {
+    transform: scale(0.98);
+}
