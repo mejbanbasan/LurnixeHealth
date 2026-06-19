@@ -77,34 +77,41 @@ $pdf->Image($back_img, $x, $y_back, $card_w, $card_h, 'JPG', '', '', false, 300,
 // 1. Overlay Member Name
 $name_text = strtoupper($member['name']);
 $name_len = strlen($name_text);
-if ($name_len > 25) {
-    $font_size = 9;
-} elseif ($name_len > 18) {
-    $font_size = 11;
-} elseif ($name_len > 12) {
-    $font_size = 13;
+if ($name_len > 28) {
+    $font_size = 8.5;
+} elseif ($name_len > 22) {
+    $font_size = 10;
+} elseif ($name_len > 16) {
+    $font_size = 12;
 } else {
-    $font_size = 15;
+    $font_size = 14.5;
 }
 
 $pdf->SetTextColor(255, 255, 255); // White text
 $pdf->SetFont('helvetica', 'B', $font_size);
-// Align to name position (X = 5.2mm, Y = 34.0mm relative to card)
-$pdf->SetXY($x + 5.2, $y_back + 34.0);
+// Align to name position (X = 5.2mm, Y = 29.5mm relative to card)
+$pdf->SetXY($x + 5.2, $y_back + 29.5);
 $pdf->Cell(52, 6, $name_text, 0, 0, 'L');
 
 // 2. Overlay Support ID (Member ID)
 $pdf->SetTextColor(255, 255, 255); // White text
 $pdf->SetFont('helvetica', 'B', 8);
-// Align to support ID position (X = 5.2mm, Y = 42.8mm relative to card)
-$pdf->SetXY($x + 5.2, $y_back + 42.8);
-$pdf->Cell(52, 4, 'Support ID: ' . $member['member_id'], 0, 0, 'L');
+// Align to support ID position (X = 5.2mm, Y = 36.2mm relative to card)
+$pdf->SetXY($x + 5.2, $y_back + 36.2);
+$pdf->Cell(52, 4, 'SUPPORT ID: ' . $member['member_id'], 0, 0, 'L');
 
-// 3. Overlay Dynamic QR Code
+// 3. Overlay Support Email (next to the envelope icon)
+$pdf->SetTextColor(255, 255, 255); // White text
+$pdf->SetFont('helvetica', 'B', 7.5);
+// Align to email position (X = 10.5mm, Y = 44.0mm relative to card)
+$pdf->SetXY($x + 10.5, $y_back + 44.0);
+$pdf->Cell(45, 4, 'support@lurnixehealth.com', 0, 0, 'L');
+
+// 4. Overlay Dynamic QR Code
 $qr_url = BASE_URL . "member.php?id=" . $member['member_id'];
-$qr_x = 59.8;
-$qr_y = 24.8;
-$qr_size = 16.5; // Slightly smaller to fit perfectly inside the white box
+$qr_x = 60.6; // Center horizontally inside the white rounded box container
+$qr_y = 28.1; // Center vertically inside the white rounded box container
+$qr_size = 14.5; // Perfect size to leave a clean, professional margin (quiet zone) all around
 
 $style = array(
     'border' => 0,
