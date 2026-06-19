@@ -93,12 +93,12 @@ $pdf->SetFont('helvetica', 'B', $font_size);
 $pdf->SetXY($x + 5.2, $y_back + 29.5);
 $pdf->Cell(52, 6, $name_text, 0, 0, 'L');
 
-// 2. Overlay Support ID (Member ID)
+// 2. Overlay Member ID
 $pdf->SetTextColor(255, 255, 255); // White text
 $pdf->SetFont('helvetica', 'B', 8);
-// Align to support ID position (X = 5.2mm, Y = 36.2mm relative to card)
+// Align to member ID position (X = 5.2mm, Y = 36.2mm relative to card)
 $pdf->SetXY($x + 5.2, $y_back + 36.2);
-$pdf->Cell(52, 4, 'SUPPORT ID: ' . $member['member_id'], 0, 0, 'L');
+$pdf->Cell(52, 4, 'MEMBER ID: ' . $member['member_id'], 0, 0, 'L');
 
 // 3. Overlay Support Email (next to the envelope icon)
 $pdf->SetTextColor(255, 255, 255); // White text

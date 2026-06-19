@@ -239,11 +239,12 @@ h1, h2, h3, h4, h5, h6 {
 /* Stats Section */
 .stats-section {
     background-color: #FFFFFF;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.02);
+    box-shadow: 0 15px 40px rgba(26, 82, 118, 0.08) !important;
     margin-top: -50px;
     position: relative;
     z-index: 10;
     border-radius: 15px;
+    border-top: 4px solid var(--primary-green);
 }
 
 .stat-item {

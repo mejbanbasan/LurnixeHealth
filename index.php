@@ -8,40 +8,43 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<section class="hero-section p-0 bg-transparent mb-4">
+<section class="hero-section py-5 mb-5 shadow-sm">
     <div class="container">
-        <!-- Desktop/Tablet View (Screens >= 768px) -->
-        <div class="d-none d-md-block position-relative w-100 rounded-4 overflow-hidden shadow-sm animate__animated animate__fadeIn" data-aos="zoom-in">
-            <img src="<?php echo BASE_URL; ?>assets/images/landing_hero.jpg" alt="LurnixeHealth Banner" class="w-100 h-auto d-block">
-            <!-- Clickable Overlay for Apply for Health Card -->
-            <a href="<?php echo BASE_URL; ?>health-card.php" class="position-absolute" style="left: 5.4%; top: 72.3%; width: 17.6%; height: 8.6%; z-index: 10;" title="Apply for Health Card"></a>
-            <!-- Clickable Overlay for Book Appointment -->
-            <a href="<?php echo BASE_URL; ?>services.php" class="position-absolute" style="left: 24%; top: 72.3%; width: 15.6%; height: 8.6%; z-index: 10;" title="Book Appointment"></a>
-        </div>
-
-        <!-- Mobile View (Screens < 768px) -->
-        <div class="d-block d-md-none" data-aos="zoom-in">
-            <!-- Responsive Banner Image (Full Visibility, No Crop) -->
-            <div class="position-relative w-100 rounded-4 overflow-hidden shadow-sm mb-3">
-                <img src="<?php echo BASE_URL; ?>assets/images/landing_hero.jpg" alt="LurnixeHealth Banner" class="w-100 h-auto d-block">
-            </div>
-            <!-- Mobile-Optimized Typography and Touch-Friendly Action Buttons -->
-            <div class="mobile-hero-card">
-                <div class="mb-2">
-                    <span class="fw-bold fs-5 text-dark" style="display: inline-flex; align-items: center;">
-                        <i class="fa-solid fa-heart-pulse text-success me-2 fs-4"></i>
-                        <span style="color:#2C3E50; font-weight: 800;">Lurnixe</span><span style="color:#27AE60; font-weight: 800;">Health</span>
-                    </span>
+        <div class="row align-items-center g-5">
+            <!-- Left Column: Premium HTML Typography & Action Buttons -->
+            <div class="col-lg-6 text-start" data-aos="fade-right">
+                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-bold mb-3 font-heading" style="letter-spacing: 0.5px;">
+                    <i class="fa-solid fa-shield-halved me-1 text-success"></i> Premium Family Health Card
+                </span>
+                <h1 class="hero-title text-dark mb-3" style="font-size: 2.8rem; font-weight: 800; line-height: 1.2;">
+                    Your Health. <br>
+                    <span style="color: var(--primary-green);">Our Priority. Always.</span>
+                </h1>
+                <p class="hero-subtitle text-muted mb-4 fs-5" style="max-width: 530px; line-height: 1.6; font-size: 1.05rem !important;">
+                    Lurnixe Health is your secure digital healthcare companion. Manage your family health records, book doctor appointments, and verify profiles instantly with one simple scan.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="<?php echo BASE_URL; ?>health-card.php" class="btn btn-success text-white px-4 py-3 rounded-3 shadow d-inline-flex align-items-center">
+                        <i class="fa-solid fa-address-card me-2 fs-5"></i>
+                        <span class="fw-bold">Apply for Health Card</span>
+                    </a>
+                    <a href="<?php echo BASE_URL; ?>services.php" class="btn btn-outline-primary px-4 py-3 rounded-3 d-inline-flex align-items-center">
+                        <i class="fa-solid fa-calendar-check me-2 fs-5"></i>
+                        <span class="fw-bold">Book Appointment</span>
+                    </a>
                 </div>
-                <h1 class="mb-2">Your Health.<br>Our Priority. Always.</h1>
-                <p class="mb-4">Manage your health records, book appointments, and connect with trusted healthcare providers — all in one place.</p>
-                <div class="d-grid gap-2">
-                    <a href="<?php echo BASE_URL; ?>health-card.php" class="btn btn-success text-white">
-                        <i class="fa-solid fa-address-card me-2"></i>Apply for Health Card
-                    </a>
-                    <a href="<?php echo BASE_URL; ?>services.php" class="btn btn-primary text-white">
-                        <i class="fa-solid fa-calendar-check me-2"></i>Book Appointment
-                    </a>
+            </div>
+            <!-- Right Column: Crop Graphic with dynamic verification label -->
+            <div class="col-lg-6 text-center" data-aos="fade-left">
+                <div class="position-relative d-inline-block">
+                    <img src="<?php echo BASE_URL; ?>assets/images/hero_family_cropped.jpg?v=2.0" alt="Lurnixe Family Health" class="img-fluid rounded-4 shadow-lg border" style="max-width: 100%; transition: transform 0.3s ease; border-color: rgba(0,0,0,0.08);" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                    <div class="position-absolute bottom-0 start-0 p-3 bg-white rounded-3 shadow-sm border m-3 d-none d-sm-flex align-items-center gap-2" style="max-width: 280px; z-index: 10; border-color: rgba(0,0,0,0.05);">
+                        <i class="fa-solid fa-circle-check text-success fs-4 animate__animated animate__pulse animate__infinite"></i>
+                        <div class="text-start">
+                            <h6 class="mb-0 fw-bold text-dark" style="font-size: 0.85rem;">Dynamic Registry Verified</h6>
+                            <span class="text-muted small" style="font-size: 0.75rem;">Real-time database validation</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
