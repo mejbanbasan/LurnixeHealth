@@ -8,43 +8,14 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<section class="hero-section d-flex align-items-center">
+<section class="hero-section p-0 bg-transparent mb-4">
     <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-right">
-                <span class="badge bg-light-green text-success px-3 py-2 rounded-pill mb-3 font-heading fw-semibold">
-                    <i class="fa-solid fa-shield-halved me-1"></i> Smart Healthcare for Everyone
-                </span>
-                <h1 class="hero-title text-dark">
-                    Your Health.<br>Our Priority.<br><span class="text-success">Always.</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Lurnixe Health is your digital healthcare companion. Manage your health records, book appointments, and connect with trusted healthcare providers — all in one place.
-                </p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="<?php echo BASE_URL; ?>health-card.php" class="btn btn-primary btn-lg rounded-pill px-4 py-3 d-flex align-items-center">
-                        <i class="fa-solid fa-id-card me-2"></i> Apply for Health Card
-                    </a>
-                    <a href="<?php echo BASE_URL; ?>services.php" class="btn btn-outline-primary btn-lg rounded-pill px-4 py-3 d-flex align-items-center">
-                        <i class="fa-solid fa-calendar-check me-2"></i> Book Appointment
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center" data-aos="fade-left">
-                <div class="position-relative d-inline-block">
-                    <!-- Display mockup image from assets -->
-                    <img src="<?php echo BASE_URL; ?>assets/images/landing_hero.jpg" alt="Lurnixe Health Mobile App Mockup" class="img-fluid rounded-4 shadow-lg" style="max-height: 550px; border: 8px solid white;">
-                    <div class="position-absolute bottom-0 start-0 bg-white p-3 rounded-4 shadow-sm m-3 d-none d-md-flex align-items-center gap-2 text-start border" style="max-width: 250px;">
-                        <div class="bg-success text-white rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-                        <div>
-                            <span class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Digital Verified</span>
-                            <span class="text-muted small" style="font-size: 0.75rem;">Instant Profile QR Scan</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="position-relative w-100 d-inline-block rounded-4 overflow-hidden shadow-sm" data-aos="zoom-in">
+            <img src="<?php echo BASE_URL; ?>assets/images/landing_hero.jpg" alt="LurnixeHealth Banner" class="w-100 h-auto d-block">
+            <!-- Clickable Overlay for Apply for Health Card -->
+            <a href="<?php echo BASE_URL; ?>health-card.php" class="position-absolute" style="left: 5.4%; top: 72.3%; width: 17.6%; height: 8.6%; z-index: 10;" title="Apply for Health Card"></a>
+            <!-- Clickable Overlay for Book Appointment -->
+            <a href="<?php echo BASE_URL; ?>services.php" class="position-absolute" style="left: 24%; top: 72.3%; width: 15.6%; height: 8.6%; z-index: 10;" title="Book Appointment"></a>
         </div>
     </div>
 </section>

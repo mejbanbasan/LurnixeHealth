@@ -12,16 +12,12 @@
     </div> <!-- End of page-content-wrapper -->
 </div> <!-- End of wrapper -->
 
-<!-- Global AJAX Loader Modal (Floating spinner) -->
-<div class="modal fade" id="ajaxLoaderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true" style="z-index: 9999;">
-    <div class="modal-dialog modal-dialog-centered modal-sm" style="max-width: 150px;">
-        <div class="modal-content border-0 bg-transparent shadow-none text-center">
-            <div class="spinner-border text-success" role="status" style="width: 3.5rem; height: 3.5rem;">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <p class="text-white mt-3 fw-bold small">Please wait...</p>
-        </div>
+<!-- Global AJAX Loader Overlay (Floating spinner) -->
+<div id="ajaxLoaderOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 99999; justify-content: center; align-items: center; flex-direction: column;">
+    <div class="spinner-border text-success" role="status" style="width: 3.5rem; height: 3.5rem;">
+        <span class="visually-hidden">Loading...</span>
     </div>
+    <p class="text-white mt-3 fw-bold small">Please wait...</p>
 </div>
 
 <!-- JQuery & Bootstrap JS -->

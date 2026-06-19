@@ -5,15 +5,12 @@
 
 // Helper to show global spinner
 function showLoader() {
-    $('#ajaxLoaderModal').modal('show');
+    $('#ajaxLoaderOverlay').css('display', 'flex');
 }
 
 // Helper to hide global spinner
 function hideLoader() {
-    // Hide with timeout to prevent modal transition sticking
-    setTimeout(function() {
-        $('#ajaxLoaderModal').modal('hide');
-    }, 300);
+    $('#ajaxLoaderOverlay').css('display', 'none');
 }
 
 // SweetAlert2 notification helper

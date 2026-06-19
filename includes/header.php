@@ -66,38 +66,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
 </head>
 <body>
 
-    <!-- Top Info Bar -->
-    <div class="top-info-bar py-2 text-white">
-        <div class="container d-flex justify-content-between align-items-center flex-wrap small">
-            <div>
-                <span class="me-3"><i class="fa-solid fa-phone me-1"></i> <?php echo htmlspecialchars($contact_phone); ?></span>
-                <span><i class="fa-solid fa-envelope me-1"></i> <?php echo htmlspecialchars($contact_email); ?></span>
-            </div>
-            <div class="d-flex align-items-center">
-                <span class="me-3 d-none d-md-inline"><i class="fa-solid fa-clock me-1"></i> 24/7 Support Desk</span>
-                <?php
-                $show_any_social = false;
-                $socials = [
-                    'facebook' => ['key' => 'facebook_url', 'toggle' => 'show_facebook', 'icon' => 'fab fa-facebook-f'],
-                    'twitter' => ['key' => 'twitter_url', 'toggle' => 'show_twitter', 'icon' => 'fab fa-x-twitter'],
-                    'instagram' => ['key' => 'instagram_url', 'toggle' => 'show_instagram', 'icon' => 'fab fa-instagram'],
-                    'youtube' => ['key' => 'youtube_url', 'toggle' => 'show_youtube', 'icon' => 'fab fa-youtube'],
-                    'linkedin' => ['key' => 'linkedin_url', 'toggle' => 'show_linkedin', 'icon' => 'fab fa-linkedin-in'],
-                ];
-                $social_html = '';
-                foreach ($socials as $name => $cfg) {
-                    if (($settings[$cfg['toggle']] ?? '0') === '1' && !empty($settings[$cfg['key']])) {
-                        $social_html .= '<a href="' . htmlspecialchars($settings[$cfg['key']]) . '" target="_blank" class="ms-3 text-white hover-white"><i class="' . $cfg['icon'] . '"></i></a>';
-                        $show_any_social = true;
-                    }
-                }
-                if ($show_any_social) {
-                    echo '<span class="d-inline-flex align-items-center border-start ps-3 border-secondary">' . $social_html . '</span>';
-                }
-                ?>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Navigation Header -->
     <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-white shadow-sm">
