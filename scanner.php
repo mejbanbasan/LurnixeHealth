@@ -44,6 +44,15 @@ require_once __DIR__ . '/includes/header.php';
     width: 100% !important;
     height: 100% !important;
     display: block !important;
+    
+    /* STRICT GPU SAFETY: Force hardware compositing to bypass WebKit/Blink blank video rendering bugs */
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    perspective: 1000 !important;
+    -webkit-perspective: 1000 !important;
+    
     background-color: #000000 !important; /* Force black video element background */
     background: #000000 !important;
 }
@@ -281,6 +290,22 @@ require_once __DIR__ . '/includes/header.php';
         </button>
         <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
     </div>
+
+    <!-- Diagnostics Section (Collapsible) -->
+    <div class="scanner-diagnostics mt-4" style="width: 100%; max-width: 290px;">
+        <button class="btn btn-sm btn-dark w-100 text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#debugConsoleCollapse" aria-expanded="false" aria-controls="debugConsoleCollapse" style="font-size: 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px;">
+            <i class="fa-solid fa-bug me-1"></i> Toggle Diagnostics
+        </button>
+        <div class="collapse" id="debugConsoleCollapse">
+            <div id="scannerDebugConsole" style="width: 100%; height: 130px; background: #000; border: 1px solid #333; border-radius: 8px; margin-top: 8px; padding: 10px; font-family: monospace; font-size: 0.7rem; color: #00ff00; overflow-y: auto; text-align: left; box-sizing: border-box;">
+                <div style="border-bottom: 1px solid #222; padding-bottom: 4px; margin-bottom: 4px; font-weight: bold; color: #fff; display: flex; justify-content: space-between;">
+                    <span>Console Log Stream:</span>
+                    <span style="color: #888; cursor: pointer;" onclick="document.getElementById('debugLogEntries').innerHTML = ''">Clear</span>
+                </div>
+                <div id="debugLogEntries"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Load stable html5-qrcode CDN from cdnjs -->
@@ -296,6 +321,45 @@ document.addEventListener("DOMContentLoaded", function() {
     const uploadBtn = document.getElementById("uploadQrBtn");
     const fileInput = document.getElementById("qrFileInput");
     const tapPrompt = document.getElementById("tapToScanPrompt");
+    const logEntries = document.getElementById("debugLogEntries");
+
+    // Real-time log capture onto screen
+    function logDebug(message, type = "info") {
+        const entry = document.createElement("div");
+        entry.style.marginBottom = "4px";
+        entry.style.wordBreak = "break-all";
+        if (type === "error") {
+            entry.style.color = "#ff3333";
+        } else if (type === "warn") {
+            entry.style.color = "#ffcc00";
+        } else {
+            entry.style.color = "#00ff00";
+        }
+        entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        logEntries.appendChild(entry);
+        const consoleDiv = document.getElementById("scannerDebugConsole");
+        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    }
+
+    // Intercept standard console logging
+    const originalLog = console.log;
+    const originalError = console.error;
+    const originalWarn = console.warn;
+
+    console.log = function(...args) {
+        originalLog.apply(console, args);
+        logDebug(args.join(" "), "info");
+    };
+    console.error = function(...args) {
+        originalError.apply(console, args);
+        logDebug(args.join(" "), "error");
+    };
+    console.warn = function(...args) {
+        originalWarn.apply(console, args);
+        logDebug(args.join(" "), "warn");
+    };
+
+    console.log("Scanner page loaded. Initializing system...");
 
     let html5QrScanner = null;
     let cameraList = [];
@@ -303,6 +367,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Check if CDN loaded
     if (typeof Html5Qrcode === "undefined") {
+        console.error("Failed to load html5-qrcode library from CDN.");
         showError("Failed to load scanner library. Please check your internet connection.");
         laser.style.display = 'none';
         overlay.style.display = 'none';
@@ -310,6 +375,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Initialize HTML5 QR Code instance
+    console.log("Library loaded. Creating Html5Qrcode instance...");
     html5QrScanner = new Html5Qrcode("reader");
 
     // Start Live camera scanning immediately on load
@@ -317,6 +383,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Start scan function
     function startScanning(cameraConstraint) {
+        console.log(`Starting scan with constraint: ${JSON.stringify(cameraConstraint)}`);
         laser.style.display = 'block';
         overlay.style.display = 'block';
         hideTapToScanPrompt();
@@ -334,9 +401,12 @@ document.addEventListener("DOMContentLoaded", function() {
             onScanSuccess,
             onScanFailure
         ).then(() => {
+            console.log("Camera started successfully. Stream is active.");
+            
             // Once started successfully, query device list in background to show switch button
             Html5Qrcode.getCameras().then(devices => {
                 cameraList = devices;
+                console.log(`Cameras found: ${devices.length}`);
                 if (devices && devices.length > 1) {
                     switchBtn.style.display = "flex";
                 } else {
@@ -346,20 +416,37 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.warn("Error enumerating cameras in background:", err);
             });
         }).catch(err => {
-            console.error("Failed to start scanner:", err);
+            console.error(`Camera start rejected/failed: ${err}`);
+            
             // Fallback: If rear camera failed, try front camera
             if (cameraConstraint.facingMode === "environment") {
-                console.log("Rear camera failed, attempting front camera fallback...");
+                console.warn("Rear camera constraint failed. Attempting front camera fallback...");
                 currentFacingMode = "user";
                 startScanning({ facingMode: currentFacingMode });
             } else {
                 // If both fail (likely due to gesture restriction or block), show tap-to-activate overlay
+                console.warn("Camera streams blocked by browser. Activating manual tap-to-scan prompt.");
                 showTapToScanPrompt("Tap here to start camera");
                 laser.style.display = 'none';
                 overlay.style.display = 'none';
             }
         });
     }
+
+    // Autoplay watchdog: forces video playing state if browser policy suspends it
+    setInterval(() => {
+        try {
+            const video = readerDiv.querySelector("video");
+            if (video && video.paused && !video.ended) {
+                console.warn("Video stream paused by user-agent/autoplay policy. Force resuming play state...");
+                video.play().then(() => {
+                    console.log("Stream successfully resumed.");
+                }).catch(e => {
+                    console.error(`Failed to force play video: ${e}`);
+                });
+            }
+        } catch (e) {}
+    }, 1000);
 
     // On Scan Success
     function onScanSuccess(decodedText, decodedResult) {
@@ -385,6 +472,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Success Redirection Handler
     function handleSuccess(decodedText) {
+        console.log(`Redirecting to details page for: ${decodedText}`);
         if (decodedText.includes("member.php?id=")) {
             window.location.href = decodedText;
         } else {
@@ -418,6 +506,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Tap to Scan Click/Tap listener (solves Safari page-load user gesture restrictions)
     tapPrompt.addEventListener("click", () => {
+        console.log("User tapped prompt overlay. Re-triggering camera request under active gesture context...");
         hideError();
         startScanning({ facingMode: currentFacingMode });
     });
@@ -441,6 +530,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fileInput.addEventListener("change", e => {
         if (e.target.files.length === 0) return;
         const file = e.target.files[0];
+        console.log(`User uploaded file: ${file.name} (${file.size} bytes). Processing...`);
 
         // Step 1: Stop live camera scanning if running
         let stopPromise = Promise.resolve();
@@ -462,7 +552,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     handleSuccess(decodedText);
                 })
                 .catch(err => {
-                    console.error("File scanning failed:", err);
+                    console.error(`File decoding failed: ${err}`);
                     showError("No valid QR code found in this image. Please try a clearer image or use the live scanner.");
                     fileInput.value = ""; // Reset file input
                     
