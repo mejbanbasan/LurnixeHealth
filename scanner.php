@@ -390,8 +390,31 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("Library loaded. Creating Html5Qrcode instance...");
     html5QrScanner = new Html5Qrcode("reader");
 
+    // Stop all active MediaStream tracks on the page to prevent camera locks
+    function stopAllActiveMediaStreams() {
+        console.log("Releasing active browser camera tracks...");
+        try {
+            const videos = document.querySelectorAll("video");
+            videos.forEach(video => {
+                if (video.srcObject instanceof MediaStream) {
+                    video.srcObject.getTracks().forEach(track => {
+                        console.log(`Stopping active track: "${track.label}"`);
+                        track.stop();
+                    });
+                    video.srcObject = null;
+                }
+            });
+        } catch (e) {
+            console.warn("Manual MediaStream cleanup error:", e);
+        }
+    }
+
     // Start Live camera scanning immediately on load
-    startScanning({ facingMode: currentFacingMode });
+    startScanning({
+        facingMode: currentFacingMode,
+        width: { ideal: 1280 },
+        height: { ideal: 720 }
+    });
 
     // Start scan function
     function startScanning(cameraConstraint) {
@@ -400,20 +423,59 @@ document.addEventListener("DOMContentLoaded", function() {
         overlay.style.display = 'block';
         hideTapToScanPrompt();
 
-        // STRICT iOS SAFETY: Removing the aspectRatio constraint entirely 
-        // to prevent OverconstrainedError failures in iOS Safari WebKit.
         html5QrScanner.start(
             cameraConstraint,
             {
                 fps: 20,
                 qrbox: (width, height) => {
                     return { width: width * 0.75, height: height * 0.75 };
+                },
+                // Disable experimental BarcodeDetector API which freezes on some device GPUs
+                useBarCodeDetectorIfSupported: false,
+                experimentalFeatures: {
+                    useBarCodeDetectorIfSupported: false
                 }
             },
             onScanSuccess,
             onScanFailure
         ).then(() => {
             console.log("Camera started successfully. Stream is active.");
+            
+            // Video Diagnostic Watchdog
+            setTimeout(() => {
+                try {
+                    const video = readerDiv.querySelector("video");
+                    if (video) {
+                        console.log(`[Video Diagnostic] readyState: ${video.readyState}`);
+                        console.log(`[Video Diagnostic] dimensions: ${video.videoWidth}x${video.videoHeight}`);
+                        console.log(`[Video Diagnostic] paused: ${video.paused}`);
+                        console.log(`[Video Diagnostic] srcObject active: ${video.srcObject ? 'Yes' : 'No'}`);
+                        
+                        if (video.srcObject) {
+                            const tracks = video.srcObject.getVideoTracks();
+                            tracks.forEach((track, i) => {
+                                console.log(`[Track ${i}] label: "${track.label}", enabled: ${track.enabled}, state: "${track.readyState}"`);
+                                if (typeof track.getSettings === 'function') {
+                                    console.log(`[Track ${i} Settings] ${JSON.stringify(track.getSettings())}`);
+                                }
+                            });
+                        }
+                        
+                        if (video.paused) {
+                            console.warn("Video element is paused inside start callback. Calling play()...");
+                            video.play().then(() => {
+                                console.log("video.play() resolved successfully.");
+                            }).catch(err => {
+                                console.error(`video.play() failed: ${err}`);
+                            });
+                        }
+                    } else {
+                        console.error("Video element not found inside reader container!");
+                    }
+                } catch (e) {
+                    console.error("Error running video diagnostics:", e);
+                }
+            }, 800);
             
             // Once started successfully, query device list in background to show switch button
             Html5Qrcode.getCameras().then(devices => {
@@ -430,13 +492,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }).catch(err => {
             console.error(`Camera start rejected/failed: ${err}`);
             
-            // Fallback: If rear camera failed, try front camera
-            if (cameraConstraint.facingMode === "environment") {
+            // Self-Healing Fallback sequence:
+            if (cameraConstraint.width || cameraConstraint.height) {
+                console.warn("Retrying start scanning with relaxed constraints (no resolution values)...");
+                startScanning({ facingMode: currentFacingMode });
+            } else if (currentFacingMode === "environment") {
                 console.warn("Rear camera constraint failed. Attempting front camera fallback...");
                 currentFacingMode = "user";
-                startScanning({ facingMode: currentFacingMode });
+                startScanning({
+                    facingMode: currentFacingMode,
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                });
             } else {
-                // If both fail (likely due to gesture restriction or block), show tap-to-activate overlay
                 console.warn("Camera streams blocked by browser. Activating manual tap-to-scan prompt.");
                 showTapToScanPrompt("Tap here to start camera");
                 laser.style.display = 'none';
@@ -467,12 +535,15 @@ document.addEventListener("DOMContentLoaded", function() {
         // Stop scanning immediately to prevent duplicate runs
         if (html5QrScanner && html5QrScanner.isScanning) {
             html5QrScanner.stop().then(() => {
+                stopAllActiveMediaStreams();
                 handleSuccess(decodedText);
             }).catch(err => {
                 console.error("Failed to stop scanner on success:", err);
+                stopAllActiveMediaStreams();
                 handleSuccess(decodedText);
             });
         } else {
+            stopAllActiveMediaStreams();
             handleSuccess(decodedText);
         }
     }
@@ -507,9 +578,18 @@ document.addEventListener("DOMContentLoaded", function() {
     // Switch camera button handler
     switchBtn.addEventListener("click", () => {
         if (html5QrScanner && html5QrScanner.isScanning) {
+            console.log("Stopping scanner for camera switch...");
             html5QrScanner.stop().then(() => {
-                currentFacingMode = (currentFacingMode === "environment") ? "user" : "environment";
-                startScanning({ facingMode: currentFacingMode });
+                stopAllActiveMediaStreams();
+                console.log("Scanner stopped. Waiting 300ms to allow hardware release...");
+                setTimeout(() => {
+                    currentFacingMode = (currentFacingMode === "environment") ? "user" : "environment";
+                    startScanning({
+                        facingMode: currentFacingMode,
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    });
+                }, 300);
             }).catch(err => {
                 console.error("Failed to stop scanner before switching:", err);
             });
@@ -520,7 +600,11 @@ document.addEventListener("DOMContentLoaded", function() {
     tapPrompt.addEventListener("click", () => {
         console.log("User tapped prompt overlay. Re-triggering camera request under active gesture context...");
         hideError();
-        startScanning({ facingMode: currentFacingMode });
+        startScanning({
+            facingMode: currentFacingMode,
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
+        });
     });
 
     function showTapToScanPrompt(msg) {
