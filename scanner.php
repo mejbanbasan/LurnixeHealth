@@ -33,17 +33,25 @@ require_once __DIR__ . '/includes/header.php';
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 #reader {
-    width: 100%;
-    height: 100%;
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
     border: none !important;
-    background-color: #000000 !important; /* Override html5-qrcode inline styles */
-    background: #000000 !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    z-index: 1 !important;
 }
 #reader video {
+    position: relative !important;
+    z-index: 2 !important;
     object-fit: cover !important;
     width: 100% !important;
     height: 100% !important;
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: transparent !important;
+    background: transparent !important;
     
     /* STRICT GPU SAFETY: Force hardware compositing to bypass WebKit/Blink blank video rendering bugs */
     transform: translate3d(0, 0, 0) !important;
@@ -52,9 +60,13 @@ require_once __DIR__ . '/includes/header.php';
     -webkit-backface-visibility: hidden !important;
     perspective: 1000 !important;
     -webkit-perspective: 1000 !important;
-    
-    background-color: #000000 !important; /* Force black video element background */
-    background: #000000 !important;
+}
+/* Force all direct and nested child elements inside #reader to have transparent backgrounds and no borders/shadows */
+#reader, #reader * {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 .scanner-frame-overlay {
     position: absolute;
