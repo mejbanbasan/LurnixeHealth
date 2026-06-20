@@ -53,13 +53,10 @@ require_once __DIR__ . '/includes/header.php';
     background-color: transparent !important;
     background: transparent !important;
     
-    /* STRICT GPU SAFETY: Force hardware compositing to bypass WebKit/Blink blank video rendering bugs */
-    transform: translate3d(0, 0, 0) !important;
-    -webkit-transform: translate3d(0, 0, 0) !important;
+    /* Hardware acceleration trigger without overriding library scaleX transforms */
+    will-change: transform, opacity !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
-    perspective: 1000 !important;
-    -webkit-perspective: 1000 !important;
 }
 /* Force all direct and nested child elements inside #reader to have transparent backgrounds and no borders/shadows */
 #reader, #reader * {
@@ -447,7 +444,31 @@ document.addEventListener("DOMContentLoaded", function() {
         ).then(() => {
             console.log("Camera started successfully. Stream is active.");
             
-            // Video Diagnostic Watchdog
+            // WebKit rendering layer repaint force
+            setTimeout(() => {
+                try {
+                    const video = readerDiv.querySelector("video");
+                    if (video) {
+                        // Toggle display state to trigger layout reflow
+                        const originalDisplay = video.style.display || "block";
+                        video.style.display = "none";
+                        video.offsetHeight; // force reflow
+                        video.style.display = originalDisplay;
+                        
+                        // Toggle opacity slightly
+                        video.style.opacity = "0.99";
+                        setTimeout(() => {
+                            video.style.opacity = "1";
+                        }, 50);
+                        
+                        console.log("Forced WebKit rendering layer repaint.");
+                    }
+                } catch (e) {
+                    console.warn("Failed to force WebKit repaint:", e);
+                }
+            }, 400);
+
+            // Comprehensive Video & Pixel Diagnostic
             setTimeout(() => {
                 try {
                     const video = readerDiv.querySelector("video");
@@ -466,6 +487,42 @@ document.addEventListener("DOMContentLoaded", function() {
                                 }
                             });
                         }
+
+                        // Pixel data frame sampling check
+                        if (video.readyState >= 2 && video.videoWidth > 0) {
+                            const canvas = document.createElement("canvas");
+                            canvas.width = 10;
+                            canvas.height = 10;
+                            const ctx = canvas.getContext("2d");
+                            ctx.drawImage(video, 0, 0, 10, 10);
+                            const imgData = ctx.getImageData(0, 0, 10, 10).data;
+                            
+                            let allWhite = true;
+                            let totalR = 0, totalG = 0, totalB = 0;
+                            for (let i = 0; i < imgData.length; i += 4) {
+                                const r = imgData[i];
+                                const g = imgData[i+1];
+                                const b = imgData[i+2];
+                                totalR += r;
+                                totalG += g;
+                                totalB += b;
+                                if (r < 240 || g < 240 || b < 240) {
+                                    allWhite = false;
+                                }
+                            }
+                            const avgR = Math.round(totalR / (imgData.length / 4));
+                            const avgG = Math.round(totalG / (imgData.length / 4));
+                            const avgB = Math.round(totalB / (imgData.length / 4));
+                            
+                            console.log(`[Frame Diagnostic] Frame average RGB: rgb(${avgR},${avgG},${avgB})`);
+                            if (allWhite) {
+                                console.warn("[Frame Diagnostic] WARNING: Video frame is completely white/blank! Check if pointed at bright light or overexposed.");
+                            } else {
+                                console.log("[Frame Diagnostic] SUCCESS: Video frame contains real non-white pixel data.");
+                            }
+                        } else {
+                            console.warn("[Frame Diagnostic] Video state not ready for pixel sampling.");
+                        }
                         
                         if (video.paused) {
                             console.warn("Video element is paused inside start callback. Calling play()...");
@@ -481,7 +538,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 } catch (e) {
                     console.error("Error running video diagnostics:", e);
                 }
-            }, 800);
+            }, 1000);
             
             // Once started successfully, query device list in background to show switch button
             Html5Qrcode.getCameras().then(devices => {
