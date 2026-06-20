@@ -268,7 +268,7 @@ require_once __DIR__ . '/includes/header.php';
 </style>
 
 <div class="scanner-container">
-    <div class="scanner-title-section">
+    <div class="scanner-title-section" style="display: none !important;">
         <h2>Scan Member Card</h2>
         <p>Position the QR code inside the frame to verify membership credentials</p>
     </div>
@@ -281,7 +281,7 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 
     <!-- Refined Status Banner -->
-    <div id="scannerStatus" class="scanner-status-banner">
+    <div id="scannerStatus" class="scanner-status-banner" style="display: none !important;">
         <i class="fa-solid fa-spinner fa-spin me-2 text-success"></i>Initializing camera...
     </div>
 
@@ -295,16 +295,16 @@ require_once __DIR__ . '/includes/header.php';
         <button id="cameraSwitchBtn" class="camera-select-btn" title="Switch Camera" style="display: none;">
             <i class="fa-solid fa-camera-rotate"></i>
         </button>
-        <button id="startScanBtn" class="scanner-fab-btn" title="Start Camera" style="display: none;">
+        <button id="startScanBtn" class="scanner-fab-btn" title="Start Camera" style="display: none !important;">
             <i class="fa-solid fa-play"></i>
         </button>
-        <button id="stopScanBtn" class="scanner-fab-btn btn-stop" title="Stop Camera" style="display: none;">
+        <button id="stopScanBtn" class="scanner-fab-btn btn-stop" title="Stop Camera" style="display: none !important;">
             <i class="fa-solid fa-square"></i>
         </button>
     </div>
 
     <!-- Fallback Manual Verification Box -->
-    <div class="manual-verification-box">
+    <div class="manual-verification-box" style="display: none !important;">
         <h6><i class="fa-solid fa-keyboard text-success"></i> Verify Manually</h6>
         <form id="manualVerifyForm">
             <div class="manual-input-group">
