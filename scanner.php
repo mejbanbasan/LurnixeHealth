@@ -4,6 +4,7 @@
  * June 2026
  */
 $page_title = "QR Scanner Portal";
+$body_class = "scanner-page";
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -18,20 +19,6 @@ require_once __DIR__ . '/includes/header.php';
     align-items: center;
     justify-content: center;
     min-height: calc(100vh - 136px);
-}
-.scanner-title-section {
-    text-align: center;
-    margin-bottom: 24px;
-}
-.scanner-title-section h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-.scanner-title-section p {
-    font-size: 0.85rem;
-    max-width: 280px;
-    margin: 0 auto;
 }
 .scanner-viewport-wrapper {
     position: relative;
@@ -121,53 +108,12 @@ require_once __DIR__ . '/includes/header.php';
     50% { top: 88%; }
     100% { top: 12%; }
 }
-.scanner-status-banner {
-    width: 100%;
-    max-width: 290px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    background-color: rgba(0, 0, 0, 0.04);
-    border: 1px solid var(--border-color);
-    font-size: 0.85rem;
-    color: var(--dark-text);
-    text-align: center;
-    margin-bottom: 24px;
-}
-@media (max-width: 991.98px) {
-    .scanner-status-banner {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        color: #e0e0e0 !important;
-    }
-}
 .scanner-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-bottom: 32px;
-}
-.scanner-fab-btn {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: #27ae60;
-    color: #ffffff;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-.scanner-fab-btn:active {
-    transform: scale(0.92);
-}
-.scanner-fab-btn.btn-stop {
-    background-color: #c0392b;
-    box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
+    margin-bottom: 20px;
 }
 .camera-select-btn {
     width: 44px;
@@ -196,83 +142,47 @@ require_once __DIR__ . '/includes/header.php';
         background-color: rgba(255, 255, 255, 0.2) !important;
     }
 }
-.manual-verification-box {
+
+/* File Upload Section */
+.scanner-upload-section {
     width: 100%;
-    max-width: 340px;
-    padding: 20px;
-    border-radius: 16px;
-    background-color: #f8f9fa;
-    border: 1px solid var(--border-color);
+    max-width: 290px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
-.manual-verification-box h6 {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--muted-gray);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
+.scanner-upload-btn {
+    width: 100%;
+    padding: 12px 24px;
+    background: rgba(39, 174, 96, 0.08);
+    color: #27ae60;
+    border: 1.5px dashed #27ae60;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 6px;
-}
-.manual-input-group {
-    display: flex;
-    border: 1px solid var(--border-color);
-    background-color: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 2px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-}
-.manual-input-group input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: 10px 14px;
-    color: var(--dark-text);
-    font-family: monospace;
-    font-size: 0.95rem;
-    font-weight: 700;
-    outline: none;
-    text-transform: uppercase;
-}
-.manual-input-group button {
-    background-color: #27ae60;
-    border: none;
-    color: #ffffff;
-    padding: 0 18px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.85rem;
+    justify-content: center;
+    gap: 8px;
     transition: all 0.2s ease;
 }
-.manual-input-group button:active {
-    background-color: #219653;
+.scanner-upload-btn:hover {
+    background: rgba(39, 174, 96, 0.12);
+}
+.scanner-upload-btn:active {
+    transform: scale(0.98);
 }
 @media (max-width: 991.98px) {
-    .manual-verification-box {
-        background-color: rgba(255, 255, 255, 0.03) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    }
-    .manual-verification-box h6 {
-        color: #aaaaaa !important;
-    }
-    .manual-input-group {
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        background-color: rgba(0, 0, 0, 0.2) !important;
-    }
-    .manual-input-group input {
-        color: #ffffff !important;
+    .scanner-upload-btn {
+        background: rgba(39, 174, 96, 0.15);
+        color: #2ecc71;
+        border-color: #2ecc71;
     }
 }
 </style>
 
 <div class="scanner-container">
-    <div class="scanner-title-section" style="display: none !important;">
-        <h2>Scan Member Card</h2>
-        <p>Position the QR code inside the frame to verify membership credentials</p>
-    </div>
-
     <!-- Centered Scanner Viewport -->
     <div class="scanner-viewport-wrapper" id="scannerWrapper">
         <div id="reader"></div>
@@ -280,39 +190,23 @@ require_once __DIR__ . '/includes/header.php';
         <div class="scanner-frame-overlay" id="overlay"><span></span></div>
     </div>
 
-    <!-- Refined Status Banner -->
-    <div id="scannerStatus" class="scanner-status-banner" style="display: none !important;">
-        <i class="fa-solid fa-spinner fa-spin me-2 text-success"></i>Initializing camera...
-    </div>
+    <!-- Error message alert -->
+    <div id="scannerError" class="alert alert-danger text-center mx-auto" style="display: none; max-width: 290px; font-size: 0.85rem; border-radius: 12px; border: 1px solid rgba(231, 76, 60, 0.2); background-color: rgba(231, 76, 60, 0.05); color: #e74c3c; margin-bottom: 20px;"></div>
 
-    <!-- Hidden Camera Selector -->
-    <select id="cameraSelect" class="form-select form-select-sm mx-auto mb-3" style="max-width: 250px; display: none; background-color: #2d2d2d; color: white; border: 1px solid #444;">
-        <option value="">Switch Camera</option>
-    </select>
-
-    <!-- Camera Controls -->
+    <!-- Camera Controls (minimal switch camera btn) -->
     <div class="scanner-controls">
         <button id="cameraSwitchBtn" class="camera-select-btn" title="Switch Camera" style="display: none;">
             <i class="fa-solid fa-camera-rotate"></i>
         </button>
-        <button id="startScanBtn" class="scanner-fab-btn" title="Start Camera" style="display: none !important;">
-            <i class="fa-solid fa-play"></i>
-        </button>
-        <button id="stopScanBtn" class="scanner-fab-btn btn-stop" title="Stop Camera" style="display: none !important;">
-            <i class="fa-solid fa-square"></i>
-        </button>
     </div>
 
-    <!-- Fallback Manual Verification Box -->
-    <div class="manual-verification-box" style="display: none !important;">
-        <h6><i class="fa-solid fa-keyboard text-success"></i> Verify Manually</h6>
-        <form id="manualVerifyForm">
-            <div class="manual-input-group">
-                <input type="text" id="manualMemberId" placeholder="e.g. LFC000124" required autocomplete="off" style="letter-spacing: 0.5px;">
-                <button type="submit">Verify</button>
-            </div>
-            <div id="manualError" class="text-danger small mt-2 fw-semibold" style="display: none; font-size: 0.75rem;"></div>
-        </form>
+    <!-- File/Image Upload Option -->
+    <div class="scanner-upload-section">
+        <button id="uploadQrBtn" class="scanner-upload-btn">
+            <i class="fa-solid fa-file-image"></i>
+            <span>Upload QR Image</span>
+        </button>
+        <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
     </div>
 </div>
 
@@ -322,21 +216,20 @@ require_once __DIR__ . '/includes/header.php';
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const readerDiv = document.getElementById("reader");
-    const statusDiv = document.getElementById("scannerStatus");
-    const cameraSelect = document.getElementById("cameraSelect");
     const switchBtn = document.getElementById("cameraSwitchBtn");
-    const startBtn = document.getElementById("startScanBtn");
-    const stopBtn = document.getElementById("stopScanBtn");
     const laser = document.getElementById("laser");
     const overlay = document.getElementById("overlay");
+    const errorDiv = document.getElementById("scannerError");
+    const uploadBtn = document.getElementById("uploadQrBtn");
+    const fileInput = document.getElementById("qrFileInput");
 
     let html5QrScanner = null;
     let cameraList = [];
-    let activeCameraId = null;
+    let currentFacingMode = "environment";
 
     // Check if CDN loaded
     if (typeof Html5Qrcode === "undefined") {
-        statusDiv.innerHTML = '<span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-2"></i>Failed to load scanner library. Reload page.</span>';
+        showError("Failed to load scanner library. Please check your internet connection.");
         laser.style.display = 'none';
         overlay.style.display = 'none';
         return;
@@ -345,57 +238,19 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize HTML5 QR Code instance
     html5QrScanner = new Html5Qrcode("reader");
 
-    // Fetch cameras
-    Html5Qrcode.getCameras().then(devices => {
-        cameraList = devices;
-        if (devices && devices.length > 0) {
-            statusDiv.innerHTML = '<i class="fa-solid fa-circle-check me-2 text-success"></i>Camera found. Ready to scan.';
-
-            // Populate select dropdown
-            cameraSelect.innerHTML = "";
-            devices.forEach((device, index) => {
-                const opt = document.createElement("option");
-                opt.value = device.id;
-                opt.text = device.label || `Camera ${index + 1}`;
-                cameraSelect.appendChild(opt);
-            });
-
-            // Show controls
-            startBtn.style.display = "flex";
-            if (devices.length > 1) {
-                switchBtn.style.display = "flex";
-            }
-
-            // Try to auto-start with back camera
-            let backCam = devices.find(device => device.label.toLowerCase().includes("back") || device.label.toLowerCase().includes("environment") || device.label.toLowerCase().includes("rear"));
-            let selectedCamId = backCam ? backCam.id : devices[0].id;
-
-            cameraSelect.value = selectedCamId;
-            startScanning(selectedCamId);
-        } else {
-            statusDiv.innerHTML = '<span class="text-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i>No camera device detected.</span>';
-            laser.style.display = 'none';
-            overlay.style.display = 'none';
-        }
-    }).catch(err => {
-        console.error("Camera access failed", err);
-        statusDiv.innerHTML = '<span class="text-danger"><i class="fa-solid fa-ban me-2"></i>Camera permission denied or blocked.</span>';
-        laser.style.display = 'none';
-        overlay.style.display = 'none';
-    });
+    // Start Live camera scanning immediately on load
+    startScanning({ facingMode: currentFacingMode });
 
     // Start scan function
-    function startScanning(cameraId) {
-        statusDiv.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2 text-success"></i>Accessing camera stream...';
+    function startScanning(cameraConstraint) {
         laser.style.display = 'block';
         overlay.style.display = 'block';
 
         html5QrScanner.start(
-            cameraId,
+            cameraConstraint,
             {
                 fps: 20,
                 qrbox: (width, height) => {
-                    // Fit the scan area nicely within overlay frame
                     return { width: width * 0.75, height: height * 0.75 };
                 },
                 aspectRatio: 1.0
@@ -403,112 +258,125 @@ document.addEventListener("DOMContentLoaded", function() {
             onScanSuccess,
             onScanFailure
         ).then(() => {
-            activeCameraId = cameraId;
-            statusDiv.innerHTML = '<i class="fa-solid fa-video me-2 text-success"></i>Camera active. Scanning...';
-            startBtn.style.display = "none";
-            stopBtn.style.display = "flex";
+            // Once started successfully, query device list in background to show switch button
+            Html5Qrcode.getCameras().then(devices => {
+                cameraList = devices;
+                if (devices && devices.length > 1) {
+                    switchBtn.style.display = "flex";
+                } else {
+                    switchBtn.style.display = "none";
+                }
+            }).catch(err => {
+                console.warn("Error enumerating cameras in background:", err);
+            });
         }).catch(err => {
-            console.error("Failed to start scanner", err);
-            statusDiv.innerHTML = `<span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-2"></i>Failed to start: ${err}</span>`;
-            laser.style.display = 'none';
-            overlay.style.display = 'none';
-            startBtn.style.display = "flex";
-            stopBtn.style.display = "none";
+            console.error("Failed to start scanner:", err);
+            // Fallback: If rear camera failed, try front camera
+            if (cameraConstraint.facingMode === "environment") {
+                console.log("Rear camera failed, attempting front camera fallback...");
+                currentFacingMode = "user";
+                startScanning({ facingMode: currentFacingMode });
+            } else {
+                showError("Camera access denied or blocked. Please upload a QR image below or check browser settings.");
+                laser.style.display = 'none';
+                overlay.style.display = 'none';
+            }
         });
     }
 
-    // Stop scan function
-    function stopScanning() {
-        if (html5QrScanner && html5QrScanner.isScanning) {
-            html5QrScanner.stop().then(() => {
-                statusDiv.innerHTML = '<i class="fa-solid fa-circle-stop me-2 text-warning"></i>Camera stopped.';
-                startBtn.style.display = "flex";
-                stopBtn.style.display = "none";
-                laser.style.display = 'none';
-                overlay.style.display = 'none';
-            }).catch(err => {
-                console.error("Failed to stop scanner", err);
-            });
-        }
-    }
-
-    // On Success
+    // On Scan Success
     function onScanSuccess(decodedText, decodedResult) {
         console.log(`Scan matched text: ${decodedText}`);
-
-        // Stop scanning immediately
-        stopScanning();
-
-        statusDiv.innerHTML = '<span class="text-success fw-bold"><i class="fa-solid fa-circle-check me-2"></i>QR Code detected! Redirecting...</span>';
-
-        // Check if QR matches member profile URL pattern
-        let redirectUrl = decodedText;
-        if (decodedText.includes("member.php?id=")) {
-            window.location.href = redirectUrl;
+        
+        // Stop scanning immediately to prevent duplicate runs
+        if (html5QrScanner && html5QrScanner.isScanning) {
+            html5QrScanner.stop().then(() => {
+                handleSuccess(decodedText);
+            }).catch(err => {
+                console.error("Failed to stop scanner on success:", err);
+                handleSuccess(decodedText);
+            });
         } else {
-            // Treat as raw ID fallback
-            window.location.href = `member.php?id=${encodeURIComponent(decodedText)}`;
+            handleSuccess(decodedText);
         }
     }
 
-    // On Failure (silent)
+    // On Scan Failure (quiet/silent)
     function onScanFailure(error) {
         // quiet
     }
 
-    // Button event handlers
-    startBtn.addEventListener("click", () => {
-        const selectedId = cameraSelect.value;
-        if (selectedId) startScanning(selectedId);
-    });
+    // Success Redirection Handler
+    function handleSuccess(decodedText) {
+        if (decodedText.includes("member.php?id=")) {
+            window.location.href = decodedText;
+        } else {
+            window.location.href = `member.php?id=${encodeURIComponent(decodedText)}`;
+        }
+    }
 
-    stopBtn.addEventListener("click", () => {
-        stopScanning();
-    });
+    // Show error helper
+    function showError(message) {
+        errorDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation me-2"></i>${message}`;
+        errorDiv.style.display = "block";
+    }
+
+    // Hide error helper
+    function hideError() {
+        errorDiv.innerHTML = "";
+        errorDiv.style.display = "none";
+    }
 
     // Switch camera button handler
     switchBtn.addEventListener("click", () => {
-        if (cameraList.length <= 1) return;
-        let currentIndex = cameraList.findIndex(device => device.id === cameraSelect.value);
-        let nextIndex = (currentIndex + 1) % cameraList.length;
-        let nextCameraId = cameraList[nextIndex].id;
-        cameraSelect.value = nextCameraId;
-
         if (html5QrScanner && html5QrScanner.isScanning) {
             html5QrScanner.stop().then(() => {
-                startScanning(nextCameraId);
+                currentFacingMode = (currentFacingMode === "environment") ? "user" : "environment";
+                startScanning({ facingMode: currentFacingMode });
+            }).catch(err => {
+                console.error("Failed to stop scanner before switching:", err);
             });
-        } else {
-            startScanning(nextCameraId);
         }
     });
 
-    cameraSelect.addEventListener("change", () => {
-        const selectedId = cameraSelect.value;
-        if (selectedId) {
-            if (html5QrScanner && html5QrScanner.isScanning) {
-                html5QrScanner.stop().then(() => {
-                    startScanning(selectedId);
+    // File Upload event handlers
+    uploadBtn.addEventListener("click", () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener("change", e => {
+        if (e.target.files.length === 0) return;
+        const file = e.target.files[0];
+
+        // Step 1: Stop live camera scanning if running
+        let stopPromise = Promise.resolve();
+        if (html5QrScanner && html5QrScanner.isScanning) {
+            stopPromise = html5QrScanner.stop();
+        }
+
+        stopPromise.then(() => {
+            hideError();
+            
+            // Set laser and overlay to display none during static file scanning
+            laser.style.display = 'none';
+            overlay.style.display = 'none';
+
+            // Step 2: Scan the image file
+            html5QrScanner.scanFile(file, false)
+                .then(decodedText => {
+                    handleSuccess(decodedText);
+                })
+                .catch(err => {
+                    console.error("File scanning failed:", err);
+                    showError("No valid QR code found in this image. Please try a clearer image or use the live scanner.");
+                    fileInput.value = ""; // Reset file input
+                    
+                    // Restart live scanning
+                    startScanning({ facingMode: currentFacingMode });
                 });
-            } else {
-                startScanning(selectedId);
-            }
-        }
-    });
-
-    // Handle Manual Verification form submission
-    document.getElementById("manualVerifyForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const errDiv = document.getElementById("manualError");
-        errDiv.style.display = "none";
-
-        const memberId = document.getElementById("manualMemberId").value.trim().toUpperCase();
-        if (memberId) {
-            window.location.href = `member.php?id=${encodeURIComponent(memberId)}`;
-        } else {
-            errDiv.innerHTML = "Please enter a valid Member ID.";
-            errDiv.style.display = "block";
-        }
+        }).catch(err => {
+            console.error("Failed to stop camera scanner for file upload:", err);
+        });
     });
 });
 </script>
