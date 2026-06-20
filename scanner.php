@@ -410,32 +410,38 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Start Live camera scanning immediately on load
-    startScanning({
-        facingMode: currentFacingMode,
-        width: { ideal: 1280 },
-        height: { ideal: 720 }
-    });
+    startScanning(currentFacingMode, true);
 
     // Start scan function
-    function startScanning(cameraConstraint) {
-        console.log(`Starting scan with constraint: ${JSON.stringify(cameraConstraint)}`);
+    function startScanning(facingMode, useResolution = false) {
+        console.log(`Starting scan: facingMode=${facingMode}, useResolution=${useResolution}`);
         laser.style.display = 'block';
         overlay.style.display = 'block';
         hideTapToScanPrompt();
 
-        html5QrScanner.start(
-            cameraConstraint,
-            {
-                fps: 20,
-                qrbox: (width, height) => {
-                    return { width: width * 0.75, height: height * 0.75 };
-                },
-                // Disable experimental BarcodeDetector API which freezes on some device GPUs
-                useBarCodeDetectorIfSupported: false,
-                experimentalFeatures: {
-                    useBarCodeDetectorIfSupported: false
-                }
+        const config = {
+            fps: 20,
+            qrbox: (width, height) => {
+                return { width: width * 0.75, height: height * 0.75 };
             },
+            // Disable experimental BarcodeDetector API which freezes on some device GPUs
+            useBarCodeDetectorIfSupported: false,
+            experimentalFeatures: {
+                useBarCodeDetectorIfSupported: false
+            }
+        };
+
+        if (useResolution) {
+            config.videoConstraints = {
+                facingMode: facingMode,
+                width: { ideal: 1280 },
+                height: { ideal: 720 }
+            };
+        }
+
+        html5QrScanner.start(
+            { facingMode: facingMode }, // EXACTLY 1 key!
+            config,
             onScanSuccess,
             onScanFailure
         ).then(() => {
@@ -493,17 +499,13 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error(`Camera start rejected/failed: ${err}`);
             
             // Self-Healing Fallback sequence:
-            if (cameraConstraint.width || cameraConstraint.height) {
+            if (useResolution) {
                 console.warn("Retrying start scanning with relaxed constraints (no resolution values)...");
-                startScanning({ facingMode: currentFacingMode });
-            } else if (currentFacingMode === "environment") {
+                startScanning(facingMode, false);
+            } else if (facingMode === "environment") {
                 console.warn("Rear camera constraint failed. Attempting front camera fallback...");
                 currentFacingMode = "user";
-                startScanning({
-                    facingMode: currentFacingMode,
-                    width: { ideal: 1280 },
-                    height: { ideal: 720 }
-                });
+                startScanning(currentFacingMode, true);
             } else {
                 console.warn("Camera streams blocked by browser. Activating manual tap-to-scan prompt.");
                 showTapToScanPrompt("Tap here to start camera");
@@ -584,11 +586,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Scanner stopped. Waiting 300ms to allow hardware release...");
                 setTimeout(() => {
                     currentFacingMode = (currentFacingMode === "environment") ? "user" : "environment";
-                    startScanning({
-                        facingMode: currentFacingMode,
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 }
-                    });
+                    startScanning(currentFacingMode, true);
                 }, 300);
             }).catch(err => {
                 console.error("Failed to stop scanner before switching:", err);
@@ -600,11 +598,7 @@ document.addEventListener("DOMContentLoaded", function() {
     tapPrompt.addEventListener("click", () => {
         console.log("User tapped prompt overlay. Re-triggering camera request under active gesture context...");
         hideError();
-        startScanning({
-            facingMode: currentFacingMode,
-            width: { ideal: 1280 },
-            height: { ideal: 720 }
-        });
+        startScanning(currentFacingMode, true);
     });
 
     function showTapToScanPrompt(msg) {
@@ -653,7 +647,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     fileInput.value = ""; // Reset file input
                     
                     // Restart live scanning
-                    startScanning({ facingMode: currentFacingMode });
+                    startScanning(currentFacingMode, false);
                 });
         }).catch(err => {
             console.error("Failed to stop camera scanner for file upload:", err);
