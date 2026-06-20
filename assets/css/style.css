@@ -393,11 +393,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mobile Viewport Safety & Shaking Resets */
-html, body {
+html {
+    scroll-behavior: smooth;
+}
+body {
     overflow-x: hidden !important;
     width: 100% !important;
     position: relative;
-    scroll-behavior: smooth;
 }
 
 /* Mobile Bottom Navigation Bar Styles */

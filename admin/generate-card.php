@@ -114,38 +114,53 @@ $pdf->Cell(45, 4, 'support@lurnixehealth.com', 0, 0, 'L');
 
 // 4. Overlay Dynamic QR Code with Premium Presentation & Center Logo
 $qr_url = BASE_URL . "member.php?id=" . $member['member_id'];
-$qr_x = 60.6;
-$qr_y = 28.1;
-$qr_size = 14.4;
 
-// Draw a beautiful white rounded rectangle container with a primary green border
-$border_style = array('width' => 0.5, 'cap' => 'round', 'join' => 'round', 'dash' => 0, 'color' => array(39, 174, 96)); // #27AE60
-$pdf->RoundedRect($x + 58.8, $y_back + 26.3, 18.0, 18.0, 2.0, '1111', 'DF', $border_style, array(255, 255, 255));
+// --- FIXED: QR container + sizing for a cleaner, well-set, properly centered look ---
+// NOTE: The background template image (pvc_back.jpg) has a flawed placeholder box baked in
+// (with a stray white tail at the bottom). This container is intentionally sized larger
+// than that placeholder so it fully covers it, including the tail, leaving only our clean box visible.
+$qr_container_w = 23.0; // increased slightly to maintain proper white quiet zone around larger QR
+$qr_container_h = 24.5; // increased slightly to maintain proper white quiet zone around larger QR
+$qr_box_x = $x + 58.8;     // shifted slightly left as requested
+$qr_box_y = $y_back + 25.0; // shifted down slightly to keep bottom edge covering the tail area
+
+// QR code itself sized smaller and centered inside this clean container
+$qr_size = 18.0; // increased on all 4 sides
+$qr_x_abs = $qr_box_x + ($qr_container_w - $qr_size) / 2;
+$qr_y_abs = $qr_box_y + ($qr_container_h - $qr_size) / 2 - 0.5; // slightly above center to balance with label space below
+
+// Shadow effect removed entirely to eliminate any stray edge/tail artifacts
+
+// Draw a clean solid white rounded rectangle container with a themed border matching the card's brand color
+$border_style = array('width' => 0.5, 'cap' => 'round', 'join' => 'round', 'dash' => 0, 'color' => array(39, 174, 96)); // brand green border to match card theme
+$pdf->SetAlpha(1.0);
+$pdf->RoundedRect($qr_box_x, $qr_box_y, $qr_container_w, $qr_container_h, 2.8, '1111', 'DF', $border_style, array(255, 255, 255));
 
 $style = array(
     'border' => 0,
     'vpadding' => 0,
     'hpadding' => 0,
     'fgcolor' => array(0, 0, 0), // black
-    'bgcolor' => array(255, 255, 255), // white
+    'bgcolor' => array(255, 255, 255), // solid white background so QR has a real, scannable quiet zone
     'module_width' => 1,
     'module_height' => 1
 );
 // Write barcode using Level H error correction (to tolerate logo occlusion)
-$pdf->write2DBarcode($qr_url, 'QRCODE,H', $x + $qr_x, $y_back + $qr_y, $qr_size, $qr_size, $style, 'N');
+$pdf->write2DBarcode($qr_url, 'QRCODE,H', $qr_x_abs, $qr_y_abs, $qr_size, $qr_size, $style, 'N');
 
-// Center logo overlay calculations
-$logo_size = 3.2;
-$logo_x = $x + $qr_x + ($qr_size - $logo_size) / 2;
-$logo_y = $y_back + $qr_y + ($qr_size - $logo_size) / 2;
+// Center logo overlay calculations (centered on the actual QR code area)
+$logo_size = 3.4;
+$logo_x = $qr_x_abs + ($qr_size - $logo_size) / 2;
+$logo_y = $qr_y_abs + ($qr_size - $logo_size) / 2;
 $logo_path = __DIR__ . '/../assets/images/qr_logo.png';
 
 if (file_exists($logo_path)) {
     // Draw white background square under logo to mask QR code pixels
-    $pdf->Rect($logo_x - 0.2, $logo_y - 0.2, $logo_size + 0.4, $logo_size + 0.4, 'F', array(), array(255, 255, 255));
+    $pdf->Rect($logo_x - 0.3, $logo_y - 0.3, $logo_size + 0.6, $logo_size + 0.6, 'F', array(), array(255, 255, 255));
     // Overlay the heart logo
     $pdf->Image($logo_path, $logo_x, $logo_y, $logo_size, $logo_size, 'PNG', '', '', false, 300, '', false, false, 0);
 }
+// --- END FIX ---
 
 
 // ==========================================

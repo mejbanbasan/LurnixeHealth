@@ -97,8 +97,8 @@ require_once __DIR__ . '/includes/header.php';
                             <small class="d-block opacity-50" style="font-size: 0.65rem;">VALID TILL</small>
                             <span class="fw-semibold small">15 Jun 2027</span>
                         </div>
-                        <div class="bg-white p-1 rounded" style="width: 50px; height: 50px;">
-                            <i class="fa-solid fa-qrcode text-dark fs-1 d-flex align-items-center justify-content-center h-100"></i>
+                        <div class="bg-white bg-opacity-75 p-2 rounded-3 shadow-sm border border-white-50 d-flex align-items-center justify-content-center" style="width: 52px; height: 52px; backdrop-filter: blur(4px);">
+                            <i class="fa-solid fa-qrcode text-dark fs-2"></i>
                         </div>
                     </div>
                 </div>
