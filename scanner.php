@@ -1,7 +1,7 @@
 <?php
 /**
  * Lurnixe Health Card System - Live QR Scanner Registry
- * June 2026
+ * June 2026 - Rebuilt from Scratch
  */
 $page_title = "QR Scanner Portal";
 $body_class = "scanner-page";
@@ -30,7 +30,7 @@ require_once __DIR__ . '/includes/header.php';
     margin-bottom: 24px;
     background-color: #000000 !important; /* Force black background to prevent white boxes */
     background: #000000 !important;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 #reader {
     width: 100%;
@@ -283,8 +283,8 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 </div>
 
-<!-- Load html5-qrcode CDN -->
-<script src="https://unpkg.com/html5-qrcode"></script>
+<!-- Load stable html5-qrcode CDN from cdnjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -321,14 +321,15 @@ document.addEventListener("DOMContentLoaded", function() {
         overlay.style.display = 'block';
         hideTapToScanPrompt();
 
+        // STRICT iOS SAFETY: Removing the aspectRatio constraint entirely 
+        // to prevent OverconstrainedError failures in iOS Safari WebKit.
         html5QrScanner.start(
             cameraConstraint,
             {
                 fps: 20,
                 qrbox: (width, height) => {
                     return { width: width * 0.75, height: height * 0.75 };
-                },
-                aspectRatio: 1.0
+                }
             },
             onScanSuccess,
             onScanFailure
