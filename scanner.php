@@ -28,16 +28,24 @@ require_once __DIR__ . '/includes/header.php';
     border-radius: 24px;
     overflow: hidden;
     margin-bottom: 24px;
+    background-color: #000000 !important; /* Force black background to prevent white boxes */
+    background: #000000 !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 #reader {
     width: 100%;
     height: 100%;
     border: none !important;
+    background-color: #000000 !important; /* Override html5-qrcode inline styles */
+    background: #000000 !important;
 }
 #reader video {
     object-fit: cover !important;
     width: 100% !important;
     height: 100% !important;
+    display: block !important;
+    background-color: #000000 !important; /* Force black video element background */
+    background: #000000 !important;
 }
 .scanner-frame-overlay {
     position: absolute;
@@ -201,6 +209,41 @@ require_once __DIR__ . '/includes/header.php';
     object-fit: contain;
     opacity: 0.85;
 }
+
+/* Tap to Activate Overlay Prompt */
+.tap-to-scan-prompt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    color: #ffffff;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 600;
+    z-index: 15; /* sits above reader, laser, and overlays */
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+}
+.tap-to-scan-prompt i {
+    font-size: 2.2rem;
+    color: #27ae60;
+    margin-bottom: 12px;
+    animation: pulseIcon 2s infinite;
+}
+@keyframes pulseIcon {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
 </style>
 
 <div class="scanner-container">
@@ -212,6 +255,11 @@ require_once __DIR__ . '/includes/header.php';
         <!-- Branded Logo Overlay inside QR scan area -->
         <div class="scanner-center-logo">
             <img src="<?php echo BASE_URL; ?>assets/images/qr_logo.png" alt="Scanner Logo">
+        </div>
+        <!-- Self-Healing Tap to Activate prompt (for iOS/Safari gesture restrictions) -->
+        <div id="tapToScanPrompt" class="tap-to-scan-prompt">
+            <i class="fa-solid fa-camera"></i>
+            <span>Tap to start camera</span>
         </div>
     </div>
 
@@ -247,6 +295,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const errorDiv = document.getElementById("scannerError");
     const uploadBtn = document.getElementById("uploadQrBtn");
     const fileInput = document.getElementById("qrFileInput");
+    const tapPrompt = document.getElementById("tapToScanPrompt");
 
     let html5QrScanner = null;
     let cameraList = [];
@@ -270,6 +319,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function startScanning(cameraConstraint) {
         laser.style.display = 'block';
         overlay.style.display = 'block';
+        hideTapToScanPrompt();
 
         html5QrScanner.start(
             cameraConstraint,
@@ -302,7 +352,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 currentFacingMode = "user";
                 startScanning({ facingMode: currentFacingMode });
             } else {
-                showError("Camera access denied or blocked. Please upload a QR image below or check browser settings.");
+                // If both fail (likely due to gesture restriction or block), show tap-to-activate overlay
+                showTapToScanPrompt("Tap here to start camera");
                 laser.style.display = 'none';
                 overlay.style.display = 'none';
             }
@@ -364,6 +415,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Tap to Scan Click/Tap listener (solves Safari page-load user gesture restrictions)
+    tapPrompt.addEventListener("click", () => {
+        hideError();
+        startScanning({ facingMode: currentFacingMode });
+    });
+
+    function showTapToScanPrompt(msg) {
+        if (msg) {
+            tapPrompt.querySelector("span").textContent = msg;
+        }
+        tapPrompt.style.display = "flex";
+    }
+
+    function hideTapToScanPrompt() {
+        tapPrompt.style.display = "none";
+    }
+
     // File Upload event handlers
     uploadBtn.addEventListener("click", () => {
         fileInput.click();
@@ -381,6 +449,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         stopPromise.then(() => {
             hideError();
+            hideTapToScanPrompt();
             
             // Set laser and overlay to display none during static file scanning
             laser.style.display = 'none';
