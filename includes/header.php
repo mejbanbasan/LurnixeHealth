@@ -39,9 +39,10 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
     
     <!-- Favicon -->
     <?php if (!empty($favicon_path) && file_exists(__DIR__ . '/../' . $favicon_path)): ?>
-        <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL . $favicon_path; ?>">
+        <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL . $favicon_path; ?>?v=2.0">
     <?php else: ?>
-        <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>favicon.ico">
+        <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>favicon.ico?v=2.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_URL; ?>favicon.png?v=2.0">
     <?php endif; ?>
     
     <!-- Google Fonts (Poppins & Open Sans) -->
@@ -62,7 +63,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     
     <!-- Custom Style CSS -->
-    <link href="<?php echo BASE_URL; ?>assets/css/style.css?v=1.0" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>assets/css/style.css?v=<?php echo filemtime(__DIR__ . '/../assets/css/style.css'); ?>" rel="stylesheet">
 </head>
 <body class="<?php echo isset($body_class) ? htmlspecialchars($body_class) : ''; ?>">
 

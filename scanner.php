@@ -9,17 +9,6 @@ require_once __DIR__ . '/includes/header.php';
 
 <style>
 /* Custom style overrides for scanner page to make it feel like a premium mobile scanning app */
-body {
-    background-color: #121212 !important; /* dark app background */
-    color: #ffffff !important;
-}
-.mobile-header {
-    background-color: #1a1a1a !important;
-    border-bottom: 1px solid #2d2d2d !important;
-}
-.mobile-header .text-dark {
-    color: #ffffff !important;
-}
 .scanner-container {
     max-width: 480px;
     margin: 0 auto;
@@ -37,12 +26,10 @@ body {
 .scanner-title-section h2 {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #ffffff;
     margin-bottom: 8px;
 }
 .scanner-title-section p {
     font-size: 0.85rem;
-    color: #aaaaaa;
     max-width: 280px;
     margin: 0 auto;
 }
@@ -53,9 +40,6 @@ body {
     aspect-ratio: 1;
     border-radius: 24px;
     overflow: hidden;
-    background: #000000;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     margin-bottom: 24px;
 }
 #reader {
@@ -142,12 +126,19 @@ body {
     max-width: 290px;
     padding: 12px 16px;
     border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
     font-size: 0.85rem;
-    color: #e0e0e0;
+    color: var(--dark-text);
     text-align: center;
     margin-bottom: 24px;
+}
+@media (max-width: 991.98px) {
+    .scanner-status-banner {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #e0e0e0 !important;
+    }
 }
 .scanner-controls {
     display: flex;
@@ -182,9 +173,9 @@ body {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary-blue);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,20 +184,30 @@ body {
     cursor: pointer;
 }
 .camera-select-btn:active {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 991.98px) {
+    .camera-select-btn {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+    .camera-select-btn:active {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
 }
 .manual-verification-box {
     width: 100%;
     max-width: 340px;
     padding: 20px;
     border-radius: 16px;
-    background-color: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #f8f9fa;
+    border: 1px solid var(--border-color);
 }
 .manual-verification-box h6 {
     font-size: 0.75rem;
     font-weight: 700;
-    color: #aaaaaa;
+    color: var(--muted-gray);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 12px;
@@ -216,18 +217,19 @@ body {
 }
 .manual-input-group {
     display: flex;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    background-color: #ffffff;
     border-radius: 10px;
     overflow: hidden;
     padding: 2px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
 }
 .manual-input-group input {
     flex: 1;
     background: transparent;
     border: none;
     padding: 10px 14px;
-    color: #ffffff;
+    color: var(--dark-text);
     font-family: monospace;
     font-size: 0.95rem;
     font-weight: 700;
@@ -246,6 +248,22 @@ body {
 }
 .manual-input-group button:active {
     background-color: #219653;
+}
+@media (max-width: 991.98px) {
+    .manual-verification-box {
+        background-color: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    .manual-verification-box h6 {
+        color: #aaaaaa !important;
+    }
+    .manual-input-group {
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        background-color: rgba(0, 0, 0, 0.2) !important;
+    }
+    .manual-input-group input {
+        color: #ffffff !important;
+    }
 }
 </style>
 
