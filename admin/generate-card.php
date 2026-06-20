@@ -17,6 +17,11 @@ require_once __DIR__ . '/../includes/functions.php';
 // Enforce login validation
 check_auth();
 
+// Set HTTP cache-control headers to prevent browser caching of generated cards
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 $member_id = sanitize_input($_GET['id'] ?? '');
 
 if (empty($member_id)) {
@@ -107,11 +112,15 @@ $pdf->SetFont('helvetica', 'B', 7.5);
 $pdf->SetXY($x + 10.5, $y_back + 44.0);
 $pdf->Cell(45, 4, 'support@lurnixehealth.com', 0, 0, 'L');
 
-// 4. Overlay Dynamic QR Code
+// 4. Overlay Dynamic QR Code with Premium Presentation & Center Logo
 $qr_url = BASE_URL . "member.php?id=" . $member['member_id'];
-$qr_x = 60.6; // Center horizontally inside the white rounded box container
-$qr_y = 28.1; // Center vertically inside the white rounded box container
-$qr_size = 14.5; // Perfect size to leave a clean, professional margin (quiet zone) all around
+$qr_x = 60.6;
+$qr_y = 28.1;
+$qr_size = 14.4;
+
+// Draw a beautiful white rounded rectangle container with a primary green border
+$border_style = array('width' => 0.5, 'cap' => 'round', 'join' => 'round', 'dash' => 0, 'color' => array(39, 174, 96)); // #27AE60
+$pdf->RoundedRect($x + 58.8, $y_back + 26.3, 18.0, 18.0, 2.0, '1111', 'DF', $border_style, array(255, 255, 255));
 
 $style = array(
     'border' => 0,
@@ -122,7 +131,21 @@ $style = array(
     'module_width' => 1,
     'module_height' => 1
 );
-$pdf->write2DBarcode($qr_url, 'QRCODE,M', $x + $qr_x, $y_back + $qr_y, $qr_size, $qr_size, $style, 'N');
+// Write barcode using Level H error correction (to tolerate logo occlusion)
+$pdf->write2DBarcode($qr_url, 'QRCODE,H', $x + $qr_x, $y_back + $qr_y, $qr_size, $qr_size, $style, 'N');
+
+// Center logo overlay calculations
+$logo_size = 3.2;
+$logo_x = $x + $qr_x + ($qr_size - $logo_size) / 2;
+$logo_y = $y_back + $qr_y + ($qr_size - $logo_size) / 2;
+$logo_path = __DIR__ . '/../assets/images/qr_logo.png';
+
+if (file_exists($logo_path)) {
+    // Draw white background square under logo to mask QR code pixels
+    $pdf->Rect($logo_x - 0.2, $logo_y - 0.2, $logo_size + 0.4, $logo_size + 0.4, 'F', array(), array(255, 255, 255));
+    // Overlay the heart logo
+    $pdf->Image($logo_path, $logo_x, $logo_y, $logo_size, $logo_size, 'PNG', '', '', false, 300, '', false, false, 0);
+}
 
 
 // ==========================================

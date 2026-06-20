@@ -144,6 +144,42 @@ $contact_address = $settings['contact_address'] ?? '123 Healthcare Blvd, Suite 4
         </div>
     </footer>
 
+    <!-- Mobile Bottom Navigation Bar -->
+    <div class="mobile-bottom-nav d-lg-none">
+        <div class="d-flex justify-content-around align-items-center h-100">
+            <a href="<?php echo BASE_URL; ?>index.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) === 'index.php') ? 'active' : ''; ?>">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="<?php echo BASE_URL; ?>services.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) === 'services.php') ? 'active' : ''; ?>">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span>Doctors</span>
+            </a>
+            <!-- Floating Center Scanner FAB -->
+            <a href="<?php echo BASE_URL; ?>scanner.php" class="nav-item scan-fab-item">
+                <div class="scan-fab-btn">
+                    <i class="fa-solid fa-qrcode"></i>
+                </div>
+                <span class="scan-label">Health Card</span>
+            </a>
+            <a href="<?php echo BASE_URL; ?>contact.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) === 'contact.php') ? 'active' : ''; ?>">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Appointments</span>
+            </a>
+            <?php if (isset($_SESSION['admin_id'])): ?>
+                <a href="<?php echo BASE_URL; ?>admin/dashboard.php" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            <?php else: ?>
+                <a href="<?php echo BASE_URL; ?>admin/login.php" class="nav-item">
+                    <i class="fa-solid fa-user-lock"></i>
+                    <span>Profile</span>
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
+
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     

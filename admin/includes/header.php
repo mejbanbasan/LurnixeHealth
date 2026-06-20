@@ -29,7 +29,10 @@ try {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>favicon.ico">
     <title><?php echo isset($page_title) ? htmlspecialchars($page_title) . " | " . SITE_NAME . " Admin" : SITE_NAME . " Admin Portal"; ?></title>
     
     <!-- Google Fonts (Poppins & Open Sans) -->

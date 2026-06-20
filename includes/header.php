@@ -32,7 +32,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title><?php echo isset($page_title) ? htmlspecialchars($page_title) . " | " . htmlspecialchars($site_name) : htmlspecialchars($meta_title); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
     <meta name="keywords" content="<?php echo htmlspecialchars($meta_keywords); ?>">

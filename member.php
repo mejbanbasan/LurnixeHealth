@@ -209,7 +209,7 @@ if (empty($member_id)) {
 
                         <!-- Card Footer actions -->
                         <div class="p-4 bg-light text-center">
-                            <a href="<?php echo BASE_URL; ?>admin/generate-card.php?id=<?php echo urlencode($member['member_id']); ?>" class="btn btn-outline-primary btn-sm w-100 py-2 fw-bold rounded-3">
+                            <a href="<?php echo BASE_URL; ?>admin/generate-card.php?id=<?php echo urlencode($member['member_id']); ?>&t=<?php echo time(); ?>" class="btn btn-outline-primary btn-sm w-100 py-2 fw-bold rounded-3">
                                 <i class="fa-solid fa-file-pdf me-2"></i>Download Printed PDF Card
                             </a>
                         </div>

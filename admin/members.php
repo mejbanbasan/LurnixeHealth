@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 small">
                                 <li><a class="dropdown-item py-2" href="view-member.php?id=${row.member_id}"><i class="fa-solid fa-eye text-primary me-2"></i> View Profile</a></li>
                                 <li><a class="dropdown-item py-2" href="edit-member.php?id=${row.member_id}"><i class="fa-solid fa-pen text-warning me-2"></i> Edit Details</a></li>
-                                <li><a class="dropdown-item py-2" href="generate-card.php?id=${row.member_id}" target="_blank"><i class="fa-solid fa-id-card text-success me-2"></i> Download Card</a></li>
+                                <li><a class="dropdown-item py-2" href="generate-card.php?id=${row.member_id}&t=${Date.now()}" target="_blank"><i class="fa-solid fa-id-card text-success me-2"></i> Download Card</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 ${row.status.toLowerCase() !== 'active' ? 
                                     `<li><a class="dropdown-item py-2 text-success" href="javascript:void(0);" onclick="updateMemberStatus('${row.member_id}', 'active')"><i class="fa-solid fa-play me-2"></i> Reactivate</a></li>` : 

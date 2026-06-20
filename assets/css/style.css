@@ -391,3 +391,109 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-hero-card .btn:active {
     transform: scale(0.98);
 }
+
+/* Mobile Viewport Safety & Shaking Resets */
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+/* Mobile Bottom Navigation Bar Styles */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+    z-index: 1050;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.mobile-bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #85929e;
+    font-size: 0.65rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    transition: all 0.2s ease;
+    flex: 1;
+    height: 100%;
+}
+
+.mobile-bottom-nav .nav-item i {
+    font-size: 1.25rem;
+    margin-bottom: 3px;
+    transition: transform 0.2s ease;
+}
+
+.mobile-bottom-nav .nav-item:hover,
+.mobile-bottom-nav .nav-item.active {
+    color: var(--primary-blue);
+}
+
+.mobile-bottom-nav .nav-item.active i {
+    transform: translateY(-2px);
+    color: var(--primary-green);
+}
+
+/* Floating Center Scanner Button (FAB) */
+.mobile-bottom-nav .scan-fab-item {
+    position: relative;
+    overflow: visible;
+}
+
+.mobile-bottom-nav .scan-fab-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #117864 0%, #1A5276 100%);
+    border: 4px solid #ffffff;
+    box-shadow: 0 6px 18px rgba(17, 120, 100, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -30px;
+    color: #ffffff;
+    font-size: 1.45rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mobile-bottom-nav .scan-fab-item:hover .scan-fab-btn {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 8px 24px rgba(17, 120, 100, 0.45);
+}
+
+.mobile-bottom-nav .scan-label {
+    margin-top: 2px;
+    color: #85929e;
+    font-weight: 600;
+}
+
+.mobile-bottom-nav .scan-fab-item:hover .scan-label {
+    color: var(--primary-blue);
+}
+
+/* Prevent layout clipping from sticky footer */
+@media (max-width: 991.98px) {
+    body {
+        padding-bottom: 80px !important;
+    }
+}
+
+/* Mobile layout transform alignment safety reset */
+@media (max-width: 767.98px) {
+    .custom-card {
+        transform: none !important;
+    }
+}

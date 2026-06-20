@@ -108,7 +108,7 @@ $status = strtolower($member['status']);
                             <i class="fa-solid fa-arrows-rotate me-1"></i> Renew Card
                         </button>
                         
-                        <a href="generate-card.php?id=<?php echo $member['member_id']; ?>" target="_blank" class="btn btn-sm btn-success rounded-pill px-3">
+                        <a href="generate-card.php?id=<?php echo urlencode($member['member_id']); ?>&t=<?php echo time(); ?>" target="_blank" class="btn btn-sm btn-success rounded-pill px-3">
                             <i class="fa-solid fa-print me-1"></i> Print / PDF
                         </a>
                         
