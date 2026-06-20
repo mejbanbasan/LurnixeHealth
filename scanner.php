@@ -299,22 +299,6 @@ require_once __DIR__ . '/includes/header.php';
         </button>
         <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
     </div>
-
-    <!-- Diagnostics Section (Collapsible) -->
-    <div class="scanner-diagnostics mt-4" style="width: 100%; max-width: 290px;">
-        <button class="btn btn-sm btn-dark w-100 text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#debugConsoleCollapse" aria-expanded="false" aria-controls="debugConsoleCollapse" style="font-size: 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px;">
-            <i class="fa-solid fa-bug me-1"></i> Toggle Diagnostics
-        </button>
-        <div class="collapse" id="debugConsoleCollapse">
-            <div id="scannerDebugConsole" style="width: 100%; height: 130px; background: #000; border: 1px solid #333; border-radius: 8px; margin-top: 8px; padding: 10px; font-family: monospace; font-size: 0.7rem; color: #00ff00; overflow-y: auto; text-align: left; box-sizing: border-box;">
-                <div style="border-bottom: 1px solid #222; padding-bottom: 4px; margin-bottom: 4px; font-weight: bold; color: #fff; display: flex; justify-content: space-between;">
-                    <span>Console Log Stream:</span>
-                    <span style="color: #888; cursor: pointer;" onclick="document.getElementById('debugLogEntries').innerHTML = ''">Clear</span>
-                </div>
-                <div id="debugLogEntries"></div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <!-- Load stable html5-qrcode CDN from cdnjs -->
@@ -330,53 +314,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const uploadBtn = document.getElementById("uploadQrBtn");
     const fileInput = document.getElementById("qrFileInput");
     const tapPrompt = document.getElementById("tapToScanPrompt");
-    const logEntries = document.getElementById("debugLogEntries");
-
-    // Real-time log capture onto screen
-    function logDebug(message, type = "info") {
-        const entry = document.createElement("div");
-        entry.style.marginBottom = "4px";
-        entry.style.wordBreak = "break-all";
-        if (type === "error") {
-            entry.style.color = "#ff3333";
-        } else if (type === "warn") {
-            entry.style.color = "#ffcc00";
-        } else {
-            entry.style.color = "#00ff00";
-        }
-        entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
-        logEntries.appendChild(entry);
-        const consoleDiv = document.getElementById("scannerDebugConsole");
-        consoleDiv.scrollTop = consoleDiv.scrollHeight;
-    }
-
-    // Intercept standard console logging
-    const originalLog = console.log;
-    const originalError = console.error;
-    const originalWarn = console.warn;
-
-    console.log = function(...args) {
-        originalLog.apply(console, args);
-        logDebug(args.join(" "), "info");
-    };
-    console.error = function(...args) {
-        originalError.apply(console, args);
-        logDebug(args.join(" "), "error");
-    };
-    console.warn = function(...args) {
-        originalWarn.apply(console, args);
-        logDebug(args.join(" "), "warn");
-    };
-
-    console.log("Scanner page loaded. Initializing system...");
-
     let html5QrScanner = null;
     let cameraList = [];
     let currentFacingMode = "environment";
 
     // Check if CDN loaded
     if (typeof Html5Qrcode === "undefined") {
-        console.error("Failed to load html5-qrcode library from CDN.");
         showError("Failed to load scanner library. Please check your internet connection.");
         laser.style.display = 'none';
         overlay.style.display = 'none';
@@ -384,7 +327,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Initialize HTML5 QR Code instance
-    console.log("Library loaded. Creating Html5Qrcode instance...");
     html5QrScanner = new Html5Qrcode("reader");
 
     // Stop all active MediaStream tracks on the page to prevent camera locks
@@ -442,108 +384,31 @@ document.addEventListener("DOMContentLoaded", function() {
             onScanSuccess,
             onScanFailure
         ).then(() => {
-            console.log("Camera started successfully. Stream is active.");
-            
-            // WebKit rendering layer repaint force
+            // WebKit rendering layer repaint force (keeps back camera active on mobile WebKit compositors)
             setTimeout(() => {
                 try {
                     const video = readerDiv.querySelector("video");
                     if (video) {
-                        // Toggle display state to trigger layout reflow
                         const originalDisplay = video.style.display || "block";
                         video.style.display = "none";
-                        video.offsetHeight; // force reflow
+                        video.offsetHeight; // force layout reflow
                         video.style.display = originalDisplay;
                         
-                        // Toggle opacity slightly
                         video.style.opacity = "0.99";
                         setTimeout(() => {
                             video.style.opacity = "1";
                         }, 50);
-                        
-                        console.log("Forced WebKit rendering layer repaint.");
-                    }
-                } catch (e) {
-                    console.warn("Failed to force WebKit repaint:", e);
-                }
-            }, 400);
 
-            // Comprehensive Video & Pixel Diagnostic
-            setTimeout(() => {
-                try {
-                    const video = readerDiv.querySelector("video");
-                    if (video) {
-                        console.log(`[Video Diagnostic] readyState: ${video.readyState}`);
-                        console.log(`[Video Diagnostic] dimensions: ${video.videoWidth}x${video.videoHeight}`);
-                        console.log(`[Video Diagnostic] paused: ${video.paused}`);
-                        console.log(`[Video Diagnostic] srcObject active: ${video.srcObject ? 'Yes' : 'No'}`);
-                        
-                        if (video.srcObject) {
-                            const tracks = video.srcObject.getVideoTracks();
-                            tracks.forEach((track, i) => {
-                                console.log(`[Track ${i}] label: "${track.label}", enabled: ${track.enabled}, state: "${track.readyState}"`);
-                                if (typeof track.getSettings === 'function') {
-                                    console.log(`[Track ${i} Settings] ${JSON.stringify(track.getSettings())}`);
-                                }
-                            });
-                        }
-
-                        // Pixel data frame sampling check
-                        if (video.readyState >= 2 && video.videoWidth > 0) {
-                            const canvas = document.createElement("canvas");
-                            canvas.width = 10;
-                            canvas.height = 10;
-                            const ctx = canvas.getContext("2d");
-                            ctx.drawImage(video, 0, 0, 10, 10);
-                            const imgData = ctx.getImageData(0, 0, 10, 10).data;
-                            
-                            let allWhite = true;
-                            let totalR = 0, totalG = 0, totalB = 0;
-                            for (let i = 0; i < imgData.length; i += 4) {
-                                const r = imgData[i];
-                                const g = imgData[i+1];
-                                const b = imgData[i+2];
-                                totalR += r;
-                                totalG += g;
-                                totalB += b;
-                                if (r < 240 || g < 240 || b < 240) {
-                                    allWhite = false;
-                                }
-                            }
-                            const avgR = Math.round(totalR / (imgData.length / 4));
-                            const avgG = Math.round(totalG / (imgData.length / 4));
-                            const avgB = Math.round(totalB / (imgData.length / 4));
-                            
-                            console.log(`[Frame Diagnostic] Frame average RGB: rgb(${avgR},${avgG},${avgB})`);
-                            if (allWhite) {
-                                console.warn("[Frame Diagnostic] WARNING: Video frame is completely white/blank! Check if pointed at bright light or overexposed.");
-                            } else {
-                                console.log("[Frame Diagnostic] SUCCESS: Video frame contains real non-white pixel data.");
-                            }
-                        } else {
-                            console.warn("[Frame Diagnostic] Video state not ready for pixel sampling.");
-                        }
-                        
                         if (video.paused) {
-                            console.warn("Video element is paused inside start callback. Calling play()...");
-                            video.play().then(() => {
-                                console.log("video.play() resolved successfully.");
-                            }).catch(err => {
-                                console.error(`video.play() failed: ${err}`);
-                            });
+                            video.play().catch(() => {});
                         }
-                    } else {
-                        console.error("Video element not found inside reader container!");
                     }
-                } catch (e) {
-                    console.error("Error running video diagnostics:", e);
-                }
-            }, 1000);
+                } catch (e) {}
+            }, 400);
             
-            // Once started successfully, query device list in background to show switch button
+            // Query device list in background to show switch camera button
             Html5Qrcode.getCameras().then(devices => {
                 cameraList = devices;
-                console.log(`Cameras found: ${devices.length}`);
                 if (devices && devices.length > 1) {
                     switchBtn.style.display = "flex";
                 } else {
