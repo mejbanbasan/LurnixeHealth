@@ -68,8 +68,86 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
 
 
 
+    <!-- Mobile Top Header -->
+    <div class="mobile-header d-lg-none d-flex justify-content-between align-items-center px-3 py-2 bg-white border-bottom sticky-top shadow-sm" style="height: 56px; z-index: 1020;">
+        <div class="d-flex align-items-center">
+            <?php if (basename($_SERVER['PHP_SELF']) !== 'index.php'): ?>
+                <a href="javascript:history.back()" class="text-dark me-3" style="font-size: 1.2rem;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            <?php else: ?>
+                <div class="brand-logo-container bg-success me-2" style="width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white;">
+                    <i class="fa-solid fa-heart-pulse" style="font-size: 0.9rem;"></i>
+                </div>
+            <?php endif; ?>
+            <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem;">
+                <?php 
+                if (basename($_SERVER['PHP_SELF']) === 'index.php') {
+                    echo htmlspecialchars($site_name);
+                } else {
+                    echo isset($page_title) ? htmlspecialchars($page_title) : 'Lurnixe Health';
+                }
+                ?>
+            </span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <?php if (basename($_SERVER['PHP_SELF']) !== 'scanner.php'): ?>
+                <a href="#" class="position-relative text-dark" style="font-size: 1.15rem;">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle" style="width: 6px; height: 6px;"></span>
+                </a>
+                <a href="#" class="text-dark" style="font-size: 1.15rem;" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Mobile Offcanvas Menu -->
+    <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel" style="width: 280px; z-index: 1050;">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold font-heading text-primary" id="mobileMenuLabel">
+                <i class="fa-solid fa-heart-pulse me-2"></i>Lurnixe Health
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div class="list-group list-group-flush">
+                <a href="<?php echo BASE_URL; ?>index.php" class="list-group-item list-group-item-action py-3 border-0 <?php echo (basename($_SERVER['PHP_SELF']) === 'index.php') ? 'active bg-light text-primary fw-bold' : ''; ?>">
+                    <i class="fa-solid fa-house me-3 text-muted"></i>Home
+                </a>
+                <a href="<?php echo BASE_URL; ?>about.php" class="list-group-item list-group-item-action py-3 border-0 <?php echo (basename($_SERVER['PHP_SELF']) === 'about.php') ? 'active bg-light text-primary fw-bold' : ''; ?>">
+                    <i class="fa-solid fa-circle-info me-3 text-muted"></i>About Us
+                </a>
+                <a href="<?php echo BASE_URL; ?>health-card.php" class="list-group-item list-group-item-action py-3 border-0 <?php echo (basename($_SERVER['PHP_SELF']) === 'health-card.php') ? 'active bg-light text-primary fw-bold' : ''; ?>">
+                    <i class="fa-solid fa-address-card me-3 text-muted"></i>Health Card
+                </a>
+                <a href="<?php echo BASE_URL; ?>services.php" class="list-group-item list-group-item-action py-3 border-0 <?php echo (basename($_SERVER['PHP_SELF']) === 'services.php') ? 'active bg-light text-primary fw-bold' : ''; ?>">
+                    <i class="fa-solid fa-user-doctor me-3 text-muted"></i>Services & Doctors
+                </a>
+                <a href="<?php echo BASE_URL; ?>contact.php" class="list-group-item list-group-item-action py-3 border-0 <?php echo (basename($_SERVER['PHP_SELF']) === 'contact.php') ? 'active bg-light text-primary fw-bold' : ''; ?>">
+                    <i class="fa-solid fa-calendar-check me-3 text-muted"></i>Book Appointment
+                </a>
+                <?php if (isset($_SESSION['admin_id'])): ?>
+                    <hr class="my-2 text-muted opacity-25">
+                    <a href="<?php echo BASE_URL; ?>admin/dashboard.php" class="list-group-item list-group-item-action py-3 border-0">
+                        <i class="fa-solid fa-chart-line me-3 text-primary"></i>Admin Dashboard
+                    </a>
+                    <a href="<?php echo BASE_URL; ?>admin/logout.php" class="list-group-item list-group-item-action py-3 border-0">
+                        <i class="fa-solid fa-right-from-bracket me-3 text-danger"></i>Logout
+                    </a>
+                <?php else: ?>
+                    <hr class="my-2 text-muted opacity-25">
+                    <a href="<?php echo BASE_URL; ?>admin/login.php" class="list-group-item list-group-item-action py-3 border-0">
+                        <i class="fa-solid fa-lock me-3 text-muted"></i>Admin Login
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation Header -->
-    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-white shadow-sm d-none d-lg-flex">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>index.php">
                 <!-- Branding Icon/Logo representation -->

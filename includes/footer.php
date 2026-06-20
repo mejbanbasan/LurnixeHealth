@@ -28,7 +28,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
 $contact_address = $settings['contact_address'] ?? '123 Healthcare Blvd, Suite 400, Medical District, NY 10016';
 ?>
     <!-- Footer Section -->
-    <footer class="footer bg-dark text-white pt-5 pb-3">
+    <footer class="footer bg-dark text-white pt-5 pb-3 d-none d-lg-block">
         <div class="container">
             <div class="row g-4">
                 <!-- Branding and info -->

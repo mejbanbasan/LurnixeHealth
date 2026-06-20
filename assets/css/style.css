@@ -497,3 +497,341 @@ html, body {
         transform: none !important;
     }
 }
+
+/* Mobile App Layout Styles (d-block d-md-none) */
+.mobile-app-container {
+    background-color: #f7f9fa;
+    padding: 0 0 75px 0;
+}
+
+/* Mobile Search Banner */
+.mobile-search-banner {
+    background: linear-gradient(135deg, #1a5276 0%, #2980b9 100%);
+    border-radius: 20px;
+    padding: 24px;
+    color: #ffffff;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(26, 82, 118, 0.15);
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.mobile-search-banner::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    bottom: -50px;
+    right: -30px;
+    pointer-events: none;
+}
+
+.mobile-search-banner-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 6px;
+    color: #ffffff !important;
+}
+
+.mobile-search-banner-subtitle {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.mobile-search-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.mobile-search-input-group {
+    position: relative;
+    flex: 1;
+}
+
+.mobile-search-input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #95a5a6;
+    font-size: 1rem;
+}
+
+.mobile-search-input {
+    width: 100%;
+    height: 48px;
+    padding: 10px 15px 10px 42px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: var(--dark-text);
+    background-color: #ffffff;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.mobile-search-filter-btn {
+    height: 48px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.mobile-search-filter-btn:active {
+    transform: scale(0.95);
+}
+
+/* Horizontal Categories Scrollbar */
+.mobile-category-scroll {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 16px;
+    padding: 5px 4px 15px 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+}
+
+.mobile-category-scroll::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.mobile-category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none !important;
+    min-width: 76px;
+}
+
+.mobile-category-icon-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mobile-category-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted-gray);
+    font-family: var(--font-heading);
+}
+
+.mobile-category-item.active .mobile-category-icon-box {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #2980b9 100%);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(26, 82, 118, 0.25);
+    transform: scale(1.05);
+}
+
+.mobile-category-item.active .mobile-category-label {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+/* Mobile Doctor Cards */
+.mobile-doctors-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 4px;
+}
+
+.mobile-doctors-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin: 0;
+}
+
+.mobile-doctors-viewall {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.mobile-doctor-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.02);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+    position: relative;
+}
+
+.mobile-doctor-photo {
+    width: 75px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+    background-color: #eaecee;
+}
+
+.mobile-doctor-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-doctor-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mobile-doctor-specialization {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted-gray);
+    margin-bottom: 1px;
+}
+
+.mobile-doctor-degree {
+    font-size: 0.72rem;
+    color: var(--muted-gray);
+    margin-bottom: 4px;
+}
+
+.mobile-doctor-rating {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #f1c40f;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.mobile-doctor-rating span {
+    color: var(--muted-gray);
+    font-weight: 600;
+}
+
+.mobile-doctor-location {
+    font-size: 0.74rem;
+    color: var(--muted-gray);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mobile-doctor-location i {
+    color: var(--primary-blue);
+}
+
+.mobile-doctor-availability {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.availability-today {
+    background-color: #e8f8f5;
+    color: #27ae60;
+}
+
+.availability-tomorrow {
+    background-color: #fdf2e9;
+    color: #e67e22;
+}
+
+.mobile-doctor-book-btn {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1.5px solid var(--primary-blue);
+    color: var(--primary-blue);
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.mobile-doctor-book-btn:active {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    transform: scale(0.96);
+}
+
+/* Premium Scanner Redesign */
+.scanner-viewport-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px !important; /* more compact and centered */
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000000;
+    aspect-ratio: 1;
+    border: 4px solid #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.scanner-frame-overlay {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    bottom: 10%;
+    border: 2px solid rgba(39, 174, 96, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.65);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.scanner-frame-overlay::before,
+.scanner-frame-overlay::after,
+.scanner-frame-overlay span::before,
+.scanner-frame-overlay span::after {
+    border-color: #27ae60 !important; /* glowing neon green corners */
+    border-width: 4px 0 0 4px !important;
+}
+
+.scanner-laser {
+    height: 2px;
+    background: linear-gradient(to right, transparent, #27ae60, transparent);
+    box-shadow: 0 0 8px #27ae60;
+}
+
