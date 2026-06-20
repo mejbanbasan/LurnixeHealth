@@ -38,12 +38,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
     <meta name="keywords" content="<?php echo htmlspecialchars($meta_keywords); ?>">
     
     <!-- Favicon -->
-    <?php if (!empty($favicon_path) && file_exists(__DIR__ . '/../' . $favicon_path)): ?>
-        <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL . $favicon_path; ?>?v=2.0">
-    <?php else: ?>
-        <link rel="icon" type="image/x-icon" href="<?php echo BASE_URL; ?>favicon.ico?v=2.0">
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_URL; ?>favicon.png?v=2.0">
-    <?php endif; ?>
+    <link rel="icon" type="image/png" href="<?php echo BASE_URL; ?>assets/images/qr_logo.png?v=3.0">
     
     <!-- Google Fonts (Poppins & Open Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

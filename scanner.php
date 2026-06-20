@@ -180,6 +180,27 @@ require_once __DIR__ . '/includes/header.php';
         border-color: #2ecc71;
     }
 }
+
+/* Center Branded Logo Overlay */
+.scanner-center-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 8;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+.scanner-center-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.85;
+}
 </style>
 
 <div class="scanner-container">
@@ -188,6 +209,10 @@ require_once __DIR__ . '/includes/header.php';
         <div id="reader"></div>
         <div class="scanner-laser" id="laser"></div>
         <div class="scanner-frame-overlay" id="overlay"><span></span></div>
+        <!-- Branded Logo Overlay inside QR scan area -->
+        <div class="scanner-center-logo">
+            <img src="<?php echo BASE_URL; ?>assets/images/qr_logo.png" alt="Scanner Logo">
+        </div>
     </div>
 
     <!-- Error message alert -->
