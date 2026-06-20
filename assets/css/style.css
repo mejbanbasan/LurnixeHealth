@@ -835,3 +835,80 @@ html, body {
     box-shadow: 0 0 8px #27ae60;
 }
 
+/* Stats Grid Borders on Mobile Viewports */
+@media (max-width: 991.98px) {
+    .stat-item {
+        border-right: none !important;
+        border-bottom: none !important;
+        padding-bottom: 12px;
+        margin-bottom: 0 !important;
+    }
+    .stat-item:nth-child(odd) {
+        border-right: 1px solid var(--border-color) !important;
+    }
+    .stat-item:nth-child(1), .stat-item:nth-child(2) {
+        border-bottom: 1px solid var(--border-color) !important;
+        padding-bottom: 16px;
+    }
+    .stat-item:nth-child(3), .stat-item:nth-child(4) {
+        padding-top: 16px;
+    }
+}
+
+/* Scanner Desktop Wrapper & Mobile Dark Mode Overrides */
+body.scanner-page {
+    transition: background-color 0.3s ease;
+}
+@media (max-width: 991.98px) {
+    body.scanner-page {
+        background-color: #121212 !important;
+        color: #ffffff !important;
+    }
+    .scanner-page .mobile-header {
+        background-color: #1a1a1a !important;
+        border-bottom: 1px solid #2d2d2d !important;
+    }
+    .scanner-page .mobile-header .text-dark {
+        color: #ffffff !important;
+    }
+    .scanner-page .scanner-title-section h2 {
+        color: #ffffff !important;
+    }
+    .scanner-page .scanner-title-section p {
+        color: #aaaaaa !important;
+    }
+}
+@media (min-width: 992px) {
+    body.scanner-page {
+        background-color: var(--body-bg) !important;
+        color: var(--dark-text) !important;
+    }
+    .scanner-page .scanner-container {
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        padding: 45px 30px !important;
+        margin-top: 40px !important;
+        margin-bottom: 60px !important;
+    }
+    .scanner-page .scanner-title-section h2 {
+        color: var(--primary-blue) !important;
+    }
+    .scanner-page .scanner-title-section p {
+        color: var(--muted-gray) !important;
+    }
+    .scanner-page .scanner-viewport-wrapper {
+        border: 4px solid var(--border-color) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
+        background-color: #000000 !important;
+    }
+}
+
+/* Ensure HTML5-QRCode components center correctly inside viewport */
+#reader div, #reader video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+

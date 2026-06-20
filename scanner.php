@@ -8,7 +8,6 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 
 <style>
-<style>
 /* Custom style overrides for scanner page to make it feel like a premium mobile scanning app */
 body {
     background-color: #121212 !important; /* dark app background */
@@ -312,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const stopBtn = document.getElementById("stopScanBtn");
     const laser = document.getElementById("laser");
     const overlay = document.getElementById("overlay");
-    
+
     let html5QrScanner = null;
     let cameraList = [];
     let activeCameraId = null;
@@ -333,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function() {
         cameraList = devices;
         if (devices && devices.length > 0) {
             statusDiv.innerHTML = '<i class="fa-solid fa-circle-check me-2 text-success"></i>Camera found. Ready to scan.';
-            
+
             // Populate select dropdown
             cameraSelect.innerHTML = "";
             devices.forEach((device, index) => {
@@ -352,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Try to auto-start with back camera
             let backCam = devices.find(device => device.label.toLowerCase().includes("back") || device.label.toLowerCase().includes("environment") || device.label.toLowerCase().includes("rear"));
             let selectedCamId = backCam ? backCam.id : devices[0].id;
-            
+
             cameraSelect.value = selectedCamId;
             startScanning(selectedCamId);
         } else {
@@ -418,10 +417,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // On Success
     function onScanSuccess(decodedText, decodedResult) {
         console.log(`Scan matched text: ${decodedText}`);
-        
+
         // Stop scanning immediately
         stopScanning();
-        
+
         statusDiv.innerHTML = '<span class="text-success fw-bold"><i class="fa-solid fa-circle-check me-2"></i>QR Code detected! Redirecting...</span>';
 
         // Check if QR matches member profile URL pattern
@@ -456,7 +455,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let nextIndex = (currentIndex + 1) % cameraList.length;
         let nextCameraId = cameraList[nextIndex].id;
         cameraSelect.value = nextCameraId;
-        
+
         if (html5QrScanner && html5QrScanner.isScanning) {
             html5QrScanner.stop().then(() => {
                 startScanning(nextCameraId);
@@ -484,7 +483,7 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
         const errDiv = document.getElementById("manualError");
         errDiv.style.display = "none";
-        
+
         const memberId = document.getElementById("manualMemberId").value.trim().toUpperCase();
         if (memberId) {
             window.location.href = `member.php?id=${encodeURIComponent(memberId)}`;

@@ -28,7 +28,7 @@ require_once __DIR__ . '/includes/header.php';
                     Lurnixe Family Health Card is designed to simplify and protect your life. Printed on standard CR80 format, it sits in your wallet and contains instant emergency links.
                 </p>
                 <div class="row g-3 mt-2">
-                    <div class="col-sm-6">
+                    <div class="col-6 col-sm-6">
                         <div class="d-flex align-items-start gap-2">
                             <span class="text-success fs-5"><i class="fa-solid fa-circle-check"></i></span>
                             <div>
@@ -37,7 +37,7 @@ require_once __DIR__ . '/includes/header.php';
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6 col-sm-6">
                         <div class="d-flex align-items-start gap-2">
                             <span class="text-success fs-5"><i class="fa-solid fa-circle-check"></i></span>
                             <div>
@@ -46,7 +46,7 @@ require_once __DIR__ . '/includes/header.php';
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6 col-sm-6">
                         <div class="d-flex align-items-start gap-2">
                             <span class="text-success fs-5"><i class="fa-solid fa-circle-check"></i></span>
                             <div>
@@ -55,7 +55,7 @@ require_once __DIR__ . '/includes/header.php';
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6 col-sm-6">
                         <div class="d-flex align-items-start gap-2">
                             <span class="text-success fs-5"><i class="fa-solid fa-circle-check"></i></span>
                             <div>

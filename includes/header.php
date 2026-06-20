@@ -64,7 +64,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
     <!-- Custom Style CSS -->
     <link href="<?php echo BASE_URL; ?>assets/css/style.css?v=1.0" rel="stylesheet">
 </head>
-<body>
+<body class="<?php echo isset($body_class) ? htmlspecialchars($body_class) : ''; ?>">
 
 
 
