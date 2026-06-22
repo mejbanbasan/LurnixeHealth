@@ -219,6 +219,22 @@ if (empty($member_id)) {
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
                     
+                    <!-- App Top Header -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 px-2" data-aos="fade-down">
+                        <h3 class="fw-bold mb-0 font-heading text-dark" style="font-size: 1.6rem;">Profile</h3>
+                        <div class="d-flex align-items-center gap-3">
+                            <!-- Notification Bell -->
+                            <a href="#" class="position-relative text-dark text-decoration-none bg-white rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 42px; height: 42px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" data-bs-toggle="modal" data-bs-target="#remindersModal">
+                                <i class="fa-regular fa-bell fs-5"></i>
+                                <span class="position-absolute top-2 end-2 p-1 bg-danger border border-light rounded-circle" style="width: 8px; height: 8px;"></span>
+                            </a>
+                            <!-- Settings/Gear Icon -->
+                            <a href="#" class="text-dark text-decoration-none bg-white rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 42px; height: 42px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                                <i class="fa-solid fa-gear fs-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
                     <!-- Profile Card (Avatar + Header Info) -->
                     <div class="profile-card-ios p-4 mb-4 text-center" data-aos="fade-up">
                         <div class="profile-avatar-wrapper mb-3">
@@ -430,7 +446,7 @@ if (empty($member_id)) {
                         <a href="<?php echo BASE_URL; ?>index.php" class="btn w-100 menu-item-row exit-btn-row py-3">
                             <div class="menu-item-left mx-auto">
                                 <i class="fa-solid fa-right-from-bracket"></i>
-                                <span>Exit Portal / Return Home</span>
+                                <span>Logout</span>
                             </div>
                         </a>
                     </div>
