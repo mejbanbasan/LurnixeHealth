@@ -12,12 +12,18 @@ function is_active($page, $current) {
 }
 ?>
 <div class="sidebar bg-dark text-white border-end" id="sidebar-wrapper">
-    <!-- Brand Info -->
     <div class="sidebar-brand-box py-4 px-3 d-flex align-items-center">
-        <div class="brand-logo-container bg-success me-2" style="width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-            <span class="brand-icon text-white" style="font-size: 1.1rem;"><i class="fa-solid fa-heart-pulse"></i></span>
-        </div>
-        <span class="brand-name text-white fs-5 fw-bold font-heading">Lurnixe<span class="text-success">Health</span></span>
+        <?php 
+        $logo_path = 'assets/images/logo.png';
+        if (file_exists(__DIR__ . '/../../' . $logo_path)): 
+        ?>
+            <img src="<?php echo BASE_URL . $logo_path; ?>" alt="LurnixeHealth" style="max-height: 48px;">
+        <?php else: ?>
+            <div class="brand-logo-container bg-success me-2" style="width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <span class="brand-icon text-white" style="font-size: 1.1rem;"><i class="fa-solid fa-heart-pulse"></i></span>
+            </div>
+            <span class="brand-name text-white fs-5 fw-bold font-heading">Lurnixe<span class="text-success">Health</span></span>
+        <?php endif; ?>
     </div>
     
     <!-- Navigation List -->

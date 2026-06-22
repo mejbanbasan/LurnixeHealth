@@ -71,20 +71,21 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
                 <a href="javascript:history.back()" class="text-dark me-3" style="font-size: 1.2rem;">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
+                <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem;">
+                    <?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Lurnixe Health'; ?>
+                </span>
             <?php else: ?>
-                <div class="brand-logo-container bg-success me-2" style="width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white;">
-                    <i class="fa-solid fa-heart-pulse" style="font-size: 0.9rem;"></i>
-                </div>
+                <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-flex align-items-center">
+                    <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
+                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 36px;" class="me-2">
+                    <?php else: ?>
+                        <div class="brand-logo-container bg-success me-2" style="width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fa-solid fa-heart-pulse" style="font-size: 0.9rem;"></i>
+                        </div>
+                        <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem;"><?php echo htmlspecialchars($site_name); ?></span>
+                    <?php endif; ?>
+                </a>
             <?php endif; ?>
-            <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem;">
-                <?php 
-                if (basename($_SERVER['PHP_SELF']) === 'index.php') {
-                    echo htmlspecialchars($site_name);
-                } else {
-                    echo isset($page_title) ? htmlspecialchars($page_title) : 'Lurnixe Health';
-                }
-                ?>
-            </span>
         </div>
         <div class="d-flex align-items-center gap-3">
             <?php if (basename($_SERVER['PHP_SELF']) !== 'scanner.php'): ?>
@@ -102,8 +103,12 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
     <!-- Mobile Offcanvas Menu -->
     <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel" style="width: 280px; z-index: 1050;">
         <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title fw-bold font-heading text-primary" id="mobileMenuLabel">
-                <i class="fa-solid fa-heart-pulse me-2"></i>Lurnixe Health
+            <h5 class="offcanvas-title fw-bold font-heading text-primary d-flex align-items-center" id="mobileMenuLabel">
+                <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
+                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 35px;">
+                <?php else: ?>
+                    <i class="fa-solid fa-heart-pulse me-2"></i>Lurnixe Health
+                <?php endif; ?>
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -148,16 +153,19 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
             <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>index.php">
                 <!-- Branding Icon/Logo representation -->
                 <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 45px;" class="me-2">
+                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 60px;" class="me-2">
+                    <div class="brand-text d-flex flex-column">
+                        <span class="brand-tagline" style="margin-left: 2px;"><?php echo htmlspecialchars($site_tagline); ?></span>
+                    </div>
                 <?php else: ?>
                     <div class="brand-logo-container me-2">
                         <span class="brand-icon"><i class="fa-solid fa-heart-pulse"></i></span>
                     </div>
+                    <div class="brand-text d-flex flex-column">
+                        <span class="brand-name"><?php echo htmlspecialchars($site_name); ?></span>
+                        <span class="brand-tagline"><?php echo htmlspecialchars($site_tagline); ?></span>
+                    </div>
                 <?php endif; ?>
-                <div class="brand-text d-flex flex-column">
-                    <span class="brand-name"><?php echo htmlspecialchars($site_name); ?></span>
-                    <span class="brand-tagline"><?php echo htmlspecialchars($site_tagline); ?></span>
-                </div>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">

@@ -51,10 +51,17 @@ $admin_email = $_SESSION['admin_email'];
     <!-- Sidebar Navigation -->
     <div class="bg-dark text-white border-end" id="sidebar-wrapper">
         <div class="sidebar-brand-box py-4 px-3 d-flex align-items-center">
-            <div class="brand-logo-container bg-success me-2" style="width: 35px; height: 35px;">
-                <span class="brand-icon text-white" style="font-size: 1.1rem;"><i class="fa-solid fa-heart-pulse"></i></span>
-            </div>
-            <span class="brand-name text-white fs-5 fw-bold">Lurnixe<span class="text-success">Health</span></span>
+            <?php 
+            $logo_path = 'assets/images/logo.png';
+            if (file_exists(__DIR__ . '/../' . $logo_path)): 
+            ?>
+                <img src="<?php echo BASE_URL . $logo_path; ?>" alt="LurnixeHealth" style="max-height: 48px;">
+            <?php else: ?>
+                <div class="brand-logo-container bg-success me-2" style="width: 35px; height: 35px;">
+                    <span class="brand-icon text-white" style="font-size: 1.1rem;"><i class="fa-solid fa-heart-pulse"></i></span>
+                </div>
+                <span class="brand-name text-white fs-5 fw-bold">Lurnixe<span class="text-success">Health</span></span>
+            <?php endif; ?>
         </div>
         
         <div class="list-group list-group-flush px-2">

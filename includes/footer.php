@@ -35,13 +35,13 @@ $contact_address = $settings['contact_address'] ?? '123 Healthcare Blvd, Suite 4
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="footer-brand d-flex align-items-center mb-3">
                         <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                            <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 40px;" class="me-2">
+                            <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 48px;" class="me-2">
                         <?php else: ?>
                             <div class="brand-logo-container bg-success me-2">
                                 <span class="brand-icon text-white"><i class="fa-solid fa-heart-pulse"></i></span>
                             </div>
+                            <span class="brand-name text-white fs-4 fw-bold"><?php echo htmlspecialchars($site_name); ?></span>
                         <?php endif; ?>
-                        <span class="brand-name text-white fs-4 fw-bold"><?php echo htmlspecialchars($site_name); ?></span>
                     </div>
                     <p class="text-white small">
                         <?php echo htmlspecialchars($footer_description); ?>

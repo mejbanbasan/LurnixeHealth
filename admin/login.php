@@ -123,6 +123,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Generate CSRF token for the login form
 $csrf = get_csrf_token();
+
+// Fetch site settings from DB
+$settings = [];
+try {
+    $settings_stmt = $pdo->query("SELECT setting_key, setting_value FROM site_settings");
+    while ($row = $settings_stmt->fetch()) {
+        $settings[$row['setting_key']] = $row['setting_value'];
+    }
+} catch (Exception $e) {
+    error_log("Failed to fetch site settings in admin login: " . $e->getMessage());
+}
+$logo_path = $settings['logo_path'] ?? '';
+$site_name = $settings['site_name'] ?? 'LurnixeHealth';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -166,10 +179,14 @@ $csrf = get_csrf_token();
             <!-- Brand Logo Header -->
             <div class="text-center mb-4">
                 <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-inline-flex align-items-center gap-2">
-                    <div class="brand-logo-container bg-success" style="width: 45px; height: 45px;">
-                        <span class="brand-icon text-white"><i class="fa-solid fa-heart-pulse"></i></span>
-                    </div>
-                    <span class="brand-name text-white fs-3">Lurnixe<span class="text-success">Health</span></span>
+                    <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
+                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 56px;">
+                    <?php else: ?>
+                        <div class="brand-logo-container bg-success" style="width: 45px; height: 45px;">
+                            <span class="brand-icon text-white"><i class="fa-solid fa-heart-pulse"></i></span>
+                        </div>
+                        <span class="brand-name text-white fs-3">Lurnixe<span class="text-success">Health</span></span>
+                    <?php endif; ?>
                 </a>
             </div>
             

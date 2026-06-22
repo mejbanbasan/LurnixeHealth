@@ -72,7 +72,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card p-4 bg-primary text-white border-0 shadow-lg rounded-4 text-start position-relative overflow-hidden mb-3" style="min-height: 250px; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%);">
                     <div class="d-flex justify-content-between align-items-start mb-4">
                         <div>
-                            <h5 class="fw-bold mb-0 text-white"><i class="fa-solid fa-heart-pulse me-2"></i>LurnixeHealth</h5>
+                            <h5 class="fw-bold mb-0 text-white d-flex align-items-center"><img src="<?php echo BASE_URL; ?>assets/images/qr_logo.png" alt="LurnixeHealth Logo" style="max-height: 22px;" class="me-2">LurnixeHealth</h5>
                             <small class="opacity-75" style="font-size: 0.7rem; letter-spacing: 1px;">FAMILY HEALTH CARD</small>
                         </div>
                         <span class="badge bg-success px-3 py-2 rounded-pill small">ACTIVE</span>
