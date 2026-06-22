@@ -21,22 +21,18 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="py-5">
     <div class="container py-3">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-right">
+        <div class="row">
+            <div class="col-lg-10 mx-auto text-center" data-aos="fade-up">
                 <h2 class="text-dark mb-4">Caring for Your Health — Smart. Simple. Secure.</h2>
-                <p class="lead text-muted mb-4">
+                <p class="lead text-muted mb-4 mx-auto" style="max-width: 850px;">
                     Lurnixe Health is a modern healthcare platform dedicated to making healthcare services smarter, simpler, and more accessible for everyone.
                 </p>
-                <p class="text-muted">
+                <p class="text-muted mx-auto mb-4" style="max-width: 900px;">
                     Our mission is to connect patients, doctors, clinics, hospitals, and healthcare providers through a secure and innovative digital ecosystem. Through our Digital Health Card system, online appointment services, health record management, and healthcare technology solutions, we aim to provide a seamless experience for both patients and medical professionals.
                 </p>
-                <p class="text-muted mb-0">
+                <p class="text-muted mx-auto mb-0" style="max-width: 900px;">
                     Our platform is designed to help individuals securely store and access their health information anytime, anywhere. By combining technology with healthcare, Lurnixe Health strives to improve efficiency, reduce paperwork, and ensure that quality healthcare is just a scan away.
                 </p>
-            </div>
-            <div class="col-lg-6 text-center d-none d-lg-block" data-aos="fade-left">
-                <!-- Display mockup image from assets -->
-                <img src="<?php echo BASE_URL; ?>assets/images/portal_welcome.jpg" alt="Lurnixe Health Welcome Portal" class="img-fluid rounded-4 shadow-lg" style="max-height: 480px; border: 8px solid white;">
             </div>
         </div>
     </div>
