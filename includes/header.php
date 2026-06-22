@@ -77,7 +77,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
             <?php else: ?>
                 <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-flex align-items-center">
                     <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 36px;" class="me-2">
+                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 44px;" class="me-2">
                     <?php else: ?>
                         <div class="brand-logo-container bg-success me-2" style="width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white;">
                             <i class="fa-solid fa-heart-pulse" style="font-size: 0.9rem;"></i>
@@ -153,7 +153,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
             <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>index.php">
                 <!-- Branding Icon/Logo representation -->
                 <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 60px;" class="me-2">
+                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 72px;" class="me-2">
                     <div class="brand-text d-flex flex-column">
                         <span class="brand-tagline" style="margin-left: 2px;"><?php echo htmlspecialchars($site_tagline); ?></span>
                     </div>
