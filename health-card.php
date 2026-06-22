@@ -67,40 +67,10 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
             </div>
             
-            <div class="col-lg-6" data-aos="fade-left">
+            <div class="col-lg-6 text-center" data-aos="fade-left">
                 <!-- Card design preview -->
-                <div class="card p-4 bg-primary text-white border-0 shadow-lg rounded-4 text-start position-relative overflow-hidden mb-3" style="min-height: 250px; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%);">
-                    <div class="d-flex justify-content-between align-items-start mb-4">
-                        <div>
-                            <h5 class="fw-bold mb-0 text-white d-flex align-items-center"><img src="<?php echo BASE_URL; ?>assets/images/qr_logo.png" alt="LurnixeHealth Logo" style="max-height: 22px;" class="me-2">LurnixeHealth</h5>
-                            <small class="opacity-75" style="font-size: 0.7rem; letter-spacing: 1px;">FAMILY HEALTH CARD</small>
-                        </div>
-                        <span class="badge bg-success px-3 py-2 rounded-pill small">ACTIVE</span>
-                    </div>
-                    
-                    <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="bg-white rounded p-1" style="width: 70px; height: 80px;">
-                            <!-- Placeholder avatar -->
-                            <div class="bg-light w-100 h-100 d-flex align-items-center justify-content-center text-muted">
-                                <i class="fa-solid fa-user fs-3"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="mb-0 text-white font-heading fw-bold">John Doe</h4>
-                            <span class="font-code text-white-50 d-block fs-6" style="letter-spacing: 1px;">ID: LFC000124</span>
-                            <span class="badge bg-light text-primary mt-1">O+ Positive</span>
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex justify-content-between align-items-end mt-auto">
-                        <div>
-                            <small class="d-block opacity-50" style="font-size: 0.65rem;">VALID TILL</small>
-                            <span class="fw-semibold small">15 Jun 2027</span>
-                        </div>
-                        <div class="bg-white bg-opacity-75 p-2 rounded-3 shadow-sm border border-white-50 d-flex align-items-center justify-content-center" style="width: 52px; height: 52px; backdrop-filter: blur(4px);">
-                            <i class="fa-solid fa-qrcode text-dark fs-2"></i>
-                        </div>
-                    </div>
+                <div class="position-relative d-inline-block">
+                    <img src="<?php echo BASE_URL; ?>assets/images/pvc_card_final.jpg" alt="LurnixeHealth Finalized PVC Card Design" class="img-fluid rounded-4 shadow-lg border" style="max-width: 100%; border-color: rgba(0,0,0,0.08);">
                 </div>
             </div>
         </div>

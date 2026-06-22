@@ -167,12 +167,12 @@ $contact_address = $settings['contact_address'] ?? '123 Healthcare Blvd, Suite 4
                 <span>Appointments</span>
             </a>
             <?php if (isset($_SESSION['admin_id'])): ?>
-                <a href="<?php echo BASE_URL; ?>admin/dashboard.php" class="nav-item">
+                <a href="<?php echo BASE_URL; ?>admin/dashboard.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) === 'dashboard.php') ? 'active' : ''; ?>">
                     <i class="fa-solid fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
             <?php else: ?>
-                <a href="<?php echo BASE_URL; ?>admin/login.php" class="nav-item">
+                <a href="<?php echo BASE_URL; ?>admin/login.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) === 'member.php' || basename($_SERVER['PHP_SELF']) === 'login.php') ? 'active' : ''; ?>">
                     <i class="fa-solid fa-user-lock"></i>
                     <span>Profile</span>
                 </a>

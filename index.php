@@ -48,7 +48,7 @@ try {
             <!-- Right Column: Crop Graphic with dynamic verification label -->
             <div class="col-lg-6 text-center" data-aos="fade-left">
                 <div class="position-relative d-inline-block">
-                    <img src="<?php echo BASE_URL; ?>assets/images/hero_family_cropped.jpg?v=2.0" alt="Lurnixe Family Health" class="img-fluid rounded-4 shadow-lg border" style="max-width: 100%; transition: transform 0.3s ease; border-color: rgba(0,0,0,0.08);" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                    <img src="<?php echo BASE_URL; ?>assets/images/hero_family_mockup.jpg" alt="Lurnixe Family Health" class="img-fluid rounded-4 shadow-lg border" style="max-width: 100%; transition: transform 0.3s ease; border-color: rgba(0,0,0,0.08);" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
                     <div class="position-absolute bottom-0 start-0 p-3 bg-white rounded-3 shadow-sm border m-3 d-none d-sm-flex align-items-center gap-2" style="max-width: 280px; z-index: 10; border-color: rgba(0,0,0,0.05);">
                         <i class="fa-solid fa-circle-check text-success fs-4 animate__animated animate__pulse animate__infinite"></i>
                         <div class="text-start">
