@@ -179,14 +179,7 @@ $site_name = $settings['site_name'] ?? 'LurnixeHealth';
             <!-- Brand Logo Header -->
             <div class="text-center mb-4">
                 <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-inline-flex align-items-center gap-2">
-                    <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="width: 220px; max-width: 100%; height: auto; object-fit: contain;">
-                    <?php else: ?>
-                        <div class="brand-logo-container bg-success" style="width: 45px; height: 45px;">
-                            <span class="brand-icon text-white"><i class="fa-solid fa-heart-pulse"></i></span>
-                        </div>
-                        <span class="brand-name text-white fs-3">Lurnixe<span class="text-success">Health</span></span>
-                    <?php endif; ?>
+                    <img src="<?php echo BASE_URL; ?>assets/images/logo.png" alt="Lurnixe Health Logo" style="width: 220px; max-width: 100%; height: auto; object-fit: contain;">
                 </a>
             </div>
             
