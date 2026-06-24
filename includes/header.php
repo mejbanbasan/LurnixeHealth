@@ -65,7 +65,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
 
 
     <!-- Mobile Top Header -->
-    <div class="mobile-header d-lg-none d-flex justify-content-between align-items-center px-3 py-2 bg-white border-bottom sticky-top shadow-sm" style="height: 80px; z-index: 1020;">
+    <div class="mobile-header d-lg-none d-flex justify-content-between align-items-center px-3 py-2 bg-white border-bottom sticky-top shadow-sm" style="height: 100px; z-index: 1020;">
         <div class="d-flex align-items-center gap-2" style="flex: 1; min-width: 0;">
             <?php if (basename($_SERVER['PHP_SELF']) !== 'index.php'): ?>
                 <a href="javascript:history.back()" class="text-dark" style="font-size: 1.3rem; min-width: 32px; display: flex; align-items: center; justify-content: center;">
@@ -77,15 +77,15 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
             <?php else: ?>
                 <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-flex align-items-center gap-2" style="flex: 1; min-width: 0;">
                     <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="height: 60px; width: auto; object-fit: contain;" class="flex-shrink-0">
+                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="height: 85px; width: auto; object-fit: contain; max-width: 100%;" class="flex-shrink-0">
                     <?php else: ?>
                         <div class="brand-logo-container" style="width: 60px; height: 60px; min-width: 60px; min-height: 60px; background-color: var(--primary-blue); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                             <i class="fa-solid fa-heart-pulse" style="font-size: 2rem; color: white;"></i>
                         </div>
+                        <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <?php echo htmlspecialchars($site_name); ?>
+                        </span>
                     <?php endif; ?>
-                    <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                        <?php echo htmlspecialchars($site_name); ?>
-                    </span>
                 </a>
             <?php endif; ?>
         </div>
@@ -155,10 +155,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
             <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>index.php">
                 <!-- Branding Icon/Logo representation -->
                 <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 72px;" class="me-2">
-                    <div class="brand-text d-flex flex-column">
-                        <span class="brand-tagline" style="margin-left: 2px;"><?php echo htmlspecialchars($site_tagline); ?></span>
-                    </div>
+                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 100px; width: auto; object-fit: contain;">
                 <?php else: ?>
                     <div class="brand-logo-container me-2">
                         <span class="brand-icon"><i class="fa-solid fa-heart-pulse"></i></span>

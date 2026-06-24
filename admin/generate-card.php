@@ -48,6 +48,7 @@ try {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lurnixe Card - <?php echo htmlspecialchars($member['member_id']); ?></title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -60,6 +61,7 @@ try {
             margin: 0;
             padding: 40px 0;
             font-family: 'Inter', sans-serif;
+            min-height: 100vh;
         }
 
         .card-container {
@@ -68,6 +70,15 @@ try {
             align-items: center;
             gap: 40px;
             width: 100%;
+        }
+
+        @media screen and (max-width: 900px) {
+            body {
+                padding: 20px 0;
+            }
+            .card-container {
+                zoom: calc(100vw / 900);
+            }
         }
 
         .ref-card {
@@ -119,13 +130,15 @@ try {
         }
 
         .ref-logo-icon {
-            height: 70px;
+            height: 120px;
             display: flex;
             align-items: center;
+            max-width: 350px;
         }
         
         .ref-logo-icon img {
             max-height: 100%;
+            max-width: 100%;
             object-fit: contain;
         }
 
