@@ -154,11 +154,11 @@ $contact_address = $settings['contact_address'] ?? '123 Healthcare Blvd, Suite 4
             <i class="fa-solid fa-user-doctor"></i>
             <span>Doctors</span>
         </a>
-        <a href="<?php echo BASE_URL; ?>health-card.php" class="nav-item scan-fab-item <?php echo (basename($_SERVER['PHP_SELF']) === 'health-card.php') ? 'active' : ''; ?>">
+        <a href="<?php echo BASE_URL; ?>scanner.php" class="nav-item scan-fab-item <?php echo (basename($_SERVER['PHP_SELF']) === 'scanner.php') ? 'active' : ''; ?>">
             <div class="scan-fab-btn">
                 <i class="fa-solid fa-qrcode"></i>
             </div>
-            <span class="scan-label">Health Card</span>
+            <span class="scan-label">Scan</span>
         </a>
         <a href="<?php echo BASE_URL; ?>contact.php" class="nav-item <?php echo (basename($_SERVER['PHP_SELF']) === 'contact.php') ? 'active' : ''; ?>">
             <i class="fa-solid fa-calendar-check"></i>

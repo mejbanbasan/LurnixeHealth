@@ -76,16 +76,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
                 </span>
             <?php else: ?>
                 <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-flex align-items-center gap-2" style="flex: 1; min-width: 0;">
-                    <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="width: 180px; max-width: 100%; height: auto; object-fit: contain;" class="flex-shrink-0">
-                    <?php else: ?>
-                        <div class="brand-logo-container" style="width: 60px; height: 60px; min-width: 60px; min-height: 60px; background-color: var(--primary-blue); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-heart-pulse" style="font-size: 2rem; color: white;"></i>
-                        </div>
-                        <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                            <?php echo htmlspecialchars($site_name); ?>
-                        </span>
-                    <?php endif; ?>
+                    <img src="<?php echo BASE_URL; ?>assets/images/logo.png" alt="Lurnixe Health" style="width: 180px; max-width: 100%; height: auto; object-fit: contain; background: transparent;" class="flex-shrink-0">
                 </a>
             <?php endif; ?>
         </div>
@@ -106,11 +97,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
     <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel" style="width: 280px; z-index: 1050;">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title fw-bold font-heading text-primary d-flex align-items-center" id="mobileMenuLabel">
-                <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="width: 160px; max-width: 100%; height: auto; object-fit: contain;">
-                <?php else: ?>
-                    <i class="fa-solid fa-heart-pulse me-2"></i>Lurnixe Health
-                <?php endif; ?>
+                <img src="<?php echo BASE_URL; ?>assets/images/logo.png" alt="Lurnixe Health" style="width: 160px; max-width: 100%; height: auto; object-fit: contain; background: transparent;">
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -154,17 +141,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>index.php">
                 <!-- Branding Icon/Logo representation -->
-                <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="width: 240px; max-width: 100%; height: auto; object-fit: contain;">
-                <?php else: ?>
-                    <div class="brand-logo-container me-2">
-                        <span class="brand-icon"><i class="fa-solid fa-heart-pulse"></i></span>
-                    </div>
-                    <div class="brand-text d-flex flex-column">
-                        <span class="brand-name"><?php echo htmlspecialchars($site_name); ?></span>
-                        <span class="brand-tagline"><?php echo htmlspecialchars($site_tagline); ?></span>
-                    </div>
-                <?php endif; ?>
+                <img src="<?php echo BASE_URL; ?>assets/images/logo.png" alt="Lurnixe Health" style="width: 260px; max-width: 100%; height: auto; object-fit: contain; background: transparent;">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">

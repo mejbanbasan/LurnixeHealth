@@ -13,19 +13,7 @@ function is_active($page, $current) {
 ?>
 <div class="sidebar bg-dark text-white border-end" id="sidebar-wrapper">
     <div class="sidebar-brand-box py-4 px-3 d-flex align-items-center">
-        <?php 
-        $stmt_logo = $pdo->query("SELECT setting_value FROM settings WHERE setting_key = 'logo_path'");
-        $logo_setting = $stmt_logo->fetchColumn();
-        $logo_path = $logo_setting ? $logo_setting : 'assets/images/logo.png';
-        if (file_exists(__DIR__ . '/../../' . $logo_path)): 
-        ?>
-            <img src="<?php echo BASE_URL . $logo_path; ?>" alt="LurnixeHealth" style="width: 180px; max-width: 100%; height: auto; object-fit: contain;">
-        <?php else: ?>
-            <div class="brand-logo-container bg-success me-2" style="width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                <span class="brand-icon text-white" style="font-size: 1.1rem;"><i class="fa-solid fa-heart-pulse"></i></span>
-            </div>
-            <span class="brand-name text-white fs-5 fw-bold font-heading">Lurnixe<span class="text-success">Health</span></span>
-        <?php endif; ?>
+        <img src="<?php echo BASE_URL; ?>assets/images/logo.png" alt="LurnixeHealth" style="width: 180px; max-width: 100%; height: auto; object-fit: contain; background: transparent;">
     </div>
     
     <!-- Navigation List -->
