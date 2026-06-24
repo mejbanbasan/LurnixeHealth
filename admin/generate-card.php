@@ -140,6 +140,7 @@ try {
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
+            mix-blend-mode: multiply;
         }
 
         .ref-details {
