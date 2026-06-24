@@ -1304,11 +1304,6 @@ body, html {
     font-size: 1.4rem;
 }
 
-.mobile-header img {
-    max-height: 55px !important;
-    width: auto;
-    object-fit: contain;
-}
 
 .mobile-header .font-heading {
     font-family: var(--font-heading);

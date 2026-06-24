@@ -336,7 +336,7 @@ if ($active_tab === 'navbar_list' || $active_tab === 'add_nav') $active_tab = 'n
                             <label class="form-label small fw-bold d-block">Website Logo</label>
                             <div class="border rounded-3 p-3 bg-light mb-2 d-flex align-items-center justify-content-center" style="height: 100px; overflow: hidden;">
                                 <?php if (!empty($settings['logo_path']) && file_exists(__DIR__ . '/../' . $settings['logo_path'])): ?>
-                                    <img src="<?php echo BASE_URL . $settings['logo_path']; ?>" class="img-fluid" style="max-height: 80px;" alt="Logo">
+                                    <img src="<?php echo BASE_URL . $settings['logo_path']; ?>" class="img-fluid" style="width: 180px; height: auto; object-fit: contain;" alt="Logo">
                                 <?php else: ?>
                                     <span class="text-muted small">No Logo Uploaded</span>
                                 <?php endif; ?>

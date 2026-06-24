@@ -77,7 +77,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
             <?php else: ?>
                 <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-flex align-items-center gap-2" style="flex: 1; min-width: 0;">
                     <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="height: 75px; width: auto; object-fit: contain;" class="flex-shrink-0">
+                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="width: 180px; max-width: 100%; height: auto; object-fit: contain;" class="flex-shrink-0">
                     <?php else: ?>
                         <div class="brand-logo-container" style="width: 60px; height: 60px; min-width: 60px; min-height: 60px; background-color: var(--primary-blue); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                             <i class="fa-solid fa-heart-pulse" style="font-size: 2rem; color: white;"></i>
@@ -107,7 +107,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title fw-bold font-heading text-primary d-flex align-items-center" id="mobileMenuLabel">
                 <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="height: 50px; width: auto; object-fit: contain;">
+                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="width: 160px; max-width: 100%; height: auto; object-fit: contain;">
                 <?php else: ?>
                     <i class="fa-solid fa-heart-pulse me-2"></i>Lurnixe Health
                 <?php endif; ?>
@@ -155,7 +155,7 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
             <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>index.php">
                 <!-- Branding Icon/Logo representation -->
                 <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="height: 85px; width: auto; object-fit: contain;">
+                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="width: 240px; max-width: 100%; height: auto; object-fit: contain;">
                 <?php else: ?>
                     <div class="brand-logo-container me-2">
                         <span class="brand-icon"><i class="fa-solid fa-heart-pulse"></i></span>
