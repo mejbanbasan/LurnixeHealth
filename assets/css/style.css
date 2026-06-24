@@ -472,9 +472,9 @@ body {
     width: 58px;
     height: 58px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #117864 0%, #1A5276 100%);
+    background: linear-gradient(to right, #007bff, #20c997);
     border: 4px solid #ffffff;
-    box-shadow: 0 6px 18px rgba(17, 120, 100, 0.35);
+    box-shadow: 0 6px 18px rgba(32, 201, 151, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
