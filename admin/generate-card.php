@@ -130,17 +130,15 @@ try {
         }
 
         .ref-logo-icon {
-            height: 120px;
+            height: 90px;
             display: flex;
             align-items: center;
-            max-width: 350px;
         }
         
         .ref-logo-icon img {
-            max-height: 100%;
-            max-width: 100%;
+            height: 100%;
+            width: auto;
             object-fit: contain;
-            mix-blend-mode: multiply;
         }
 
         .ref-details {
@@ -523,6 +521,13 @@ try {
         <div class="ref-mag-stripe"></div>
         
         <div class="ref-back-header">
+            <div class="ref-logo-icon" style="height: 50px;">
+                <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
+                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="Company Logo" style="height: 100%; width: auto; object-fit: contain;">
+                <?php else: ?>
+                    <h2 class="ref-brand-title" style="margin:0; font-size: 20px;">Lurnixe<span>Health</span></h2>
+                <?php endif; ?>
+            </div>
             <div class="ref-back-header-title">Important Information</div>
         </div>
 
