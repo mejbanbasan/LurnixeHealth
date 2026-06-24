@@ -51,7 +51,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lurnixe Card - <?php echo htmlspecialchars($member['member_id']); ?></title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -60,7 +60,7 @@ try {
             background-color: #f0f2f5;
             margin: 0;
             padding: 40px 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             min-height: 100vh;
         }
 
@@ -73,60 +73,71 @@ try {
         }
 
         @media screen and (max-width: 900px) {
-            body {
-                padding: 20px 0;
-            }
-            .card-container {
-                zoom: calc(100vw / 900);
-            }
+            body { padding: 20px 0; }
+            .card-container { zoom: calc(100vw / 900); }
         }
 
         .ref-card {
             width: 856px;
             height: 540px;
             background: #ffffff;
-            border-radius: 30px;
+            border-radius: 24px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
             user-select: none;
             -webkit-user-select: none;
-            color: #1a1a1a;
+            color: #1a202c;
             margin: 0 auto;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         /* Front Side Styling */
+        .ref-front {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .ref-front::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(32, 201, 151, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(13, 202, 240, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
         .ref-front .right-shape {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: -20%;
+            right: -10%;
             width: 45%;
-            height: 100%;
-            background: linear-gradient(135deg, #0dcaf0 0%, #20c997 100%);
-            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%, 15% 65%, 5% 35%);
+            height: 140%;
+            background: linear-gradient(135deg, #0d6efd 0%, #20c997 100%);
+            transform: rotate(-10deg);
+            border-radius: 60px;
             z-index: 1;
+            box-shadow: -15px 0 40px rgba(32, 201, 151, 0.2);
         }
 
         .ref-front .right-shape-overlay {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: -10%;
+            right: -15%;
             width: 45%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-            clip-path: polygon(35% 0, 100% 0, 100% 100%, 10% 100%, 25% 65%, 15% 35%);
-            z-index: 0;
+            height: 120%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
+            transform: rotate(-10deg);
+            border-radius: 60px;
+            z-index: 2;
         }
 
         .ref-header {
             position: absolute;
             top: 40px;
             left: 45px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 2;
+            z-index: 3;
         }
 
         .ref-logo-icon {
@@ -141,79 +152,105 @@ try {
             object-fit: contain;
         }
 
-        .ref-details {
+        .ref-badge {
             position: absolute;
-            top: 170px;
-            left: 45px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            z-index: 2;
-            width: 50%;
-        }
-
-        .ref-row {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .ref-icon-box {
-            width: 40px;
-            height: 40px;
-            background: #0dcaf0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            top: 45px;
+            right: 45px;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: #fff;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-
-        .ref-label {
-            font-size: 16px;
-            color: #555;
-            width: 100px;
-            font-weight: 500;
-        }
-
-        .ref-value {
-            font-size: 22px;
-            font-weight: 700;
-            color: #111;
-        }
-        
-        .ref-value.name {
-            font-size: 28px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
-        }
-
-        .ref-bottom-icons {
-            position: absolute;
-            bottom: 40px;
-            left: 45px;
             display: flex;
-            gap: 35px;
-            z-index: 2;
-        }
-
-        .ref-bottom-icon {
-            display: flex;
-            flex-direction: column;
             align-items: center;
             gap: 8px;
         }
 
-        .ref-bottom-icon i {
-            font-size: 28px;
-            color: #333;
+        .ref-details {
+            position: absolute;
+            top: 150px;
+            left: 45px;
+            z-index: 3;
+            width: 50%;
         }
 
-        .ref-bottom-icon span {
-            font-size: 12px;
+        .ref-name-block {
+            margin-bottom: 35px;
+        }
+
+        .ref-label {
+            font-size: 13px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             font-weight: 600;
-            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .ref-value.name {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .ref-info-grid {
+            display: flex;
+            gap: 20px;
+        }
+
+        .ref-info-box {
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            min-width: 140px;
+        }
+
+        .ref-info-box .ref-label {
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .ref-info-box .ref-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .ref-bottom-strip {
+            position: absolute;
+            bottom: 40px;
+            left: 45px;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f1f5f9;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .ref-bottom-strip i {
+            color: #0d6efd;
+            font-size: 16px;
+        }
+
+        .ref-bottom-strip span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
         }
 
         .ref-right-content {
@@ -222,177 +259,165 @@ try {
             right: 0;
             width: 350px;
             height: 100%;
-            z-index: 2;
+            z-index: 3;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .ref-contactless {
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #fff;
-            gap: 5px;
-        }
-
-        .ref-contactless i {
-            font-size: 32px;
-            transform: rotate(90deg);
-        }
-
-        .ref-contactless span {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
         .ref-qr-wrapper {
-            background: #fff;
-            padding: 12px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-top: 20px;
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .ref-qr-text {
-            color: #fff;
+            color: #ffffff;
             font-size: 14px;
             font-weight: 600;
             text-align: center;
-            margin-top: 15px;
-            line-height: 1.4;
-        }
-
-        .ref-website {
-            position: absolute;
-            bottom: 40px;
-            right: 40px;
-            font-size: 18px;
-            font-weight: 600;
-            color: #111;
-            z-index: 3;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Back Side Styling */
         .ref-back {
-            background: #fdfdfd;
-            background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
+            background: #ffffff;
+            background-image: 
+                radial-gradient(#f1f5f9 1px, transparent 1px),
+                radial-gradient(#f1f5f9 1px, transparent 1px);
+            background-position: 0 0, 10px 10px;
             background-size: 20px 20px;
         }
 
         .ref-mag-stripe {
             width: 100%;
-            height: 65px;
-            background: #111;
+            height: 70px;
+            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
             position: absolute;
-            top: 40px;
+            top: 45px;
             left: 0;
             z-index: 10;
         }
 
         .ref-back-header {
             position: absolute;
-            top: 120px;
+            top: 140px;
             left: 0;
             width: 100%;
             padding: 0 45px;
             box-sizing: border-box;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end;
         }
         
         .ref-back-header-title {
-            color: #0dcaf0;
-            font-size: 14px;
-            font-weight: 700;
+            color: #0d6efd;
+            font-size: 15px;
+            font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
         .ref-back-content {
             position: absolute;
-            top: 150px;
+            top: 180px;
             left: 45px;
             right: 45px;
             display: flex;
-            gap: 50px;
+            gap: 40px;
         }
 
         .ref-terms-container {
-            flex: 1.5;
+            flex: 1.6;
             background: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid #20c997;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            padding: 24px;
+            border-radius: 16px;
+            border-left: 5px solid #0d6efd;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
         }
 
         .ref-terms {
             font-size: 13px;
-            line-height: 1.7;
-            color: #555;
+            line-height: 1.8;
+            color: #475569;
             margin: 0;
         }
 
         .ref-terms h4 {
-            margin: 0 0 10px 0;
-            color: #111;
+            margin: 0 0 12px 0;
+            color: #0f172a;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .ref-company-info {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 20px;
         }
 
         .ref-info-block {
             background: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border-top: 4px solid #0dcaf0;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            border-top: 5px solid #20c997;
+            height: 100%;
+            box-sizing: border-box;
         }
 
         .ref-info-block h4 {
-            margin: 0 0 15px 0;
-            color: #111;
+            margin: 0 0 20px 0;
+            color: #0f172a;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            letter-spacing: 0.5px;
         }
         
         .ref-info-block h4 i {
-            color: #0dcaf0;
+            color: #20c997;
+            font-size: 18px;
         }
 
         .ref-info-row {
             display: flex;
-            gap: 12px;
-            margin-bottom: 12px;
-            font-size: 14px;
-            color: #444;
-            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            color: #334155;
+            align-items: center;
         }
 
         .ref-info-row i {
-            color: #20c997;
+            color: #0d6efd;
             font-size: 16px;
-            margin-top: 3px;
-            width: 16px;
+            width: 20px;
             text-align: center;
+        }
+        
+        .ref-info-row strong {
+            color: #0f172a;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 2px;
         }
 
         .ref-back-footer {
@@ -400,27 +425,25 @@ try {
             bottom: 0;
             left: 0;
             width: 100%;
-            background: #f1f3f5;
-            padding: 15px 45px;
+            background: #f8fafc;
+            padding: 20px 45px;
             box-sizing: border-box;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #e9ecef;
+            border-top: 1px solid #e2e8f0;
         }
         
         .ref-back-footer-text {
             font-size: 12px;
-            color: #666;
-            font-weight: 600;
+            color: #64748b;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         @media print {
-            .no-print {
-                display: none !important;
-            }
+            .no-print { display: none !important; }
             body {
                 background: white !important;
                 padding: 0 !important;
@@ -429,16 +452,13 @@ try {
                 color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
-            @page {
-                margin: 10mm;
-            }
+            @page { margin: 10mm; }
             .ref-card {
                 box-shadow: none !important;
                 border: 1px solid #eee !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
                 margin-bottom: 20px !important;
-                /* Optional scaling to ensure it fits nicely on paper */
                 transform: scale(0.9);
                 transform-origin: top left;
             }
@@ -450,70 +470,52 @@ try {
 <div class="card-container">
     <!-- FRONT SIDE -->
     <div class="ref-card ref-front">
-        <div class="right-shape-overlay"></div>
         <div class="right-shape"></div>
+        <div class="right-shape-overlay"></div>
         
         <div class="ref-header">
             <div class="ref-logo-icon">
                 <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
                     <img src="<?php echo BASE_URL . $logo_path; ?>" alt="Company Logo">
                 <?php else: ?>
-                    <h2 class="ref-brand-title" style="margin:0;">Lurnixe<span>Health</span></h2>
+                    <h2 class="ref-brand-title" style="margin:0; font-family: 'Outfit', sans-serif; font-weight: 800; color: #0f172a; font-size: 28px;">Lurnixe<span style="color: #0d6efd;">Health</span></h2>
                 <?php endif; ?>
             </div>
         </div>
 
+        <div class="ref-badge">
+            <i class="fa-solid fa-notes-medical"></i> Health Membership
+        </div>
+
         <div class="ref-details">
-            <div class="ref-row">
-                <div class="ref-icon-box"><i class="fa-solid fa-user"></i></div>
-                <div class="ref-label">Name</div>
+            <div class="ref-name-block">
+                <div class="ref-label">Member Name</div>
                 <div class="ref-value name"><?php echo htmlspecialchars($member['name']); ?></div>
             </div>
-            <div class="ref-row">
-                <div class="ref-icon-box"><i class="fa-solid fa-id-card"></i></div>
-                <div class="ref-label">Member ID</div>
-                <div class="ref-value"><?php echo htmlspecialchars($member['member_id']); ?></div>
-            </div>
-            <div class="ref-row">
-                <div class="ref-icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="ref-label">Valid Upto</div>
-                <div class="ref-value"><?php echo date('M Y', strtotime($member['validity_date'])); ?></div>
+            
+            <div class="ref-info-grid">
+                <div class="ref-info-box">
+                    <div class="ref-label">Member ID</div>
+                    <div class="ref-value"><?php echo htmlspecialchars($member['member_id']); ?></div>
+                </div>
+                <div class="ref-info-box">
+                    <div class="ref-label">Valid Upto</div>
+                    <div class="ref-value"><?php echo date('M Y', strtotime($member['validity_date'])); ?></div>
+                </div>
             </div>
         </div>
 
-        <div class="ref-bottom-icons">
-            <div class="ref-bottom-icon">
-                <i class="fa-solid fa-stethoscope"></i>
-                <span>Stethoscope</span>
-            </div>
-            <div class="ref-bottom-icon">
-                <i class="fa-solid fa-user-doctor"></i>
-                <span>Doctor</span>
-            </div>
-            <div class="ref-bottom-icon">
-                <i class="fa-solid fa-users"></i>
-                <span>Family</span>
-            </div>
-            <div class="ref-bottom-icon">
-                <i class="fa-solid fa-compact-disc"></i>
-                <span>Disc</span>
-            </div>
+        <div class="ref-bottom-strip">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Active Healthcare Network Member</span>
         </div>
 
         <div class="ref-right-content">
-            <div class="ref-contactless">
-                <i class="fa-solid fa-wifi"></i>
-                <span>TAP TO CARE</span>
-            </div>
-            
             <div class="ref-qr-wrapper" id="qrcode"></div>
-            
             <div class="ref-qr-text">
                 SCAN FOR INSTANT<br>CARE DETAILS
             </div>
         </div>
-
-        <div class="ref-website">www.lurnixehealth.com</div>
     </div>
     
     <!-- BACK SIDE -->
@@ -521,11 +523,11 @@ try {
         <div class="ref-mag-stripe"></div>
         
         <div class="ref-back-header">
-            <div class="ref-logo-icon" style="width: 150px;">
+            <div class="ref-logo-icon" style="width: 160px;">
                 <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
                     <img src="<?php echo BASE_URL . $logo_path; ?>" alt="Company Logo" style="width: 100%; height: auto; object-fit: contain;">
                 <?php else: ?>
-                    <h2 class="ref-brand-title" style="margin:0; font-size: 20px;">Lurnixe<span>Health</span></h2>
+                    <h2 class="ref-brand-title" style="margin:0; font-family: 'Outfit', sans-serif; font-weight: 800; color: #0f172a; font-size: 20px;">Lurnixe<span style="color: #0d6efd;">Health</span></h2>
                 <?php endif; ?>
             </div>
             <div class="ref-back-header-title">Important Information</div>
@@ -536,32 +538,32 @@ try {
                 <div class="ref-terms">
                     <h4>Terms & Conditions</h4>
                     <p>This health card is the property of Lurnixe Health and must be returned upon request. It is strictly non-transferable and can only be used by the registered member whose details appear on the front. Use of this card is governed by the prevailing terms and conditions of the Lurnixe Healthcare network.</p>
-                    <p>Present this card at any partner hospital or clinic to access your medical records instantly.</p>
-                    <p><strong>If found, please return to:</strong><br>Lurnixe Health Headquarters, 123 Healthcare Ave, Medical District, City.</p>
+                    <p>Present this card at any partner hospital, clinic, or pharmacy to access your medical records instantly.</p>
+                    <p style="margin-top: 15px;"><strong>If found, please return to:</strong><br>Lurnixe Health Headquarters, 123 Healthcare Ave, Medical District, City.</p>
                 </div>
             </div>
             
             <div class="ref-company-info">
                 <div class="ref-info-block">
-                    <h4><i class="fa-solid fa-headset"></i> Contact Us</h4>
+                    <h4><i class="fa-solid fa-headset"></i> Contact Support</h4>
                     <div class="ref-info-row">
                         <i class="fa-solid fa-phone"></i>
                         <div>
-                            <strong>24/7 Helpline:</strong><br>
+                            <strong>24/7 Helpline</strong>
                             +1 (800) 123-4567
                         </div>
                     </div>
                     <div class="ref-info-row">
                         <i class="fa-solid fa-envelope"></i>
                         <div>
-                            <strong>Support Email:</strong><br>
+                            <strong>Support Email</strong>
                             support@lurnixehealth.com
                         </div>
                     </div>
                     <div class="ref-info-row" style="margin-bottom: 0;">
                         <i class="fa-solid fa-globe"></i>
                         <div>
-                            <strong>Website:</strong><br>
+                            <strong>Website</strong>
                             www.lurnixehealth.com
                         </div>
                     </div>
@@ -587,7 +589,7 @@ try {
                 text: qrUrl,
                 width: 140,
                 height: 140,
-                colorDark : "#20c997",
+                colorDark : "#0f172a",
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.H
             });
