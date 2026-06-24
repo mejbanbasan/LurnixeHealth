@@ -119,7 +119,7 @@ try {
         }
 
         .ref-logo-icon {
-            height: 70px;
+            height: 85px;
             display: flex;
             align-items: center;
         }
@@ -443,11 +443,7 @@ try {
         
         <div class="ref-header">
             <div class="ref-logo-icon">
-                <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                    <img src="<?php echo BASE_URL . $logo_path; ?>" alt="Company Logo">
-                <?php else: ?>
-                    <h2 class="ref-brand-title" style="margin:0;">Lurnixe<span>Health</span></h2>
-                <?php endif; ?>
+                    <img src="<?php echo BASE_URL; ?>assets/images/logo.png" alt="Company Logo" style="max-height: 100%; object-fit: contain; background: transparent;">
             </div>
         </div>
 

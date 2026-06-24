@@ -71,7 +71,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="col-lg-6 text-center" data-aos="fade-left">
                                                 <!-- Professional PVC Card Image -->
                 <div class="card shadow-none border-0 bg-transparent text-center">
-                    <img src="<?php echo BASE_URL; ?>assets/images/new_pvc_card.png" class="img-fluid rounded shadow" alt="Lurnixe Health Card Design" style="max-width: 100%; height: auto; border-radius: 12px; margin-bottom: 2rem;">
+                    <img src="<?php echo BASE_URL; ?>assets/images/new_pvc_card_v2.png" class="img-fluid rounded shadow" alt="Lurnixe Health Card Design" style="max-width: 100%; height: auto; border-radius: 12px; margin-bottom: 2rem;">
                 </div>
             </div>
         </div>
