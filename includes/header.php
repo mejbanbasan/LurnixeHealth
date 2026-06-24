@@ -65,25 +65,27 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
 
 
     <!-- Mobile Top Header -->
-    <div class="mobile-header d-lg-none d-flex justify-content-between align-items-center px-3 py-2 bg-white border-bottom sticky-top shadow-sm" style="height: 56px; z-index: 1020;">
-        <div class="d-flex align-items-center">
+    <div class="mobile-header d-lg-none d-flex justify-content-between align-items-center px-3 py-2 bg-white border-bottom sticky-top shadow-sm" style="height: 80px; z-index: 1020;">
+        <div class="d-flex align-items-center gap-2" style="flex: 1; min-width: 0;">
             <?php if (basename($_SERVER['PHP_SELF']) !== 'index.php'): ?>
-                <a href="javascript:history.back()" class="text-dark me-3" style="font-size: 1.2rem;">
+                <a href="javascript:history.back()" class="text-dark" style="font-size: 1.3rem; min-width: 32px; display: flex; align-items: center; justify-content: center;">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem;">
+                <span class="fw-bold text-dark font-heading" style="font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                     <?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Lurnixe Health'; ?>
                 </span>
             <?php else: ?>
-                <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-flex align-items-center">
+                <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none d-flex align-items-center gap-2" style="flex: 1; min-width: 0;">
                     <?php if (!empty($logo_path) && file_exists(__DIR__ . '/../' . $logo_path)): ?>
-                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="max-height: 44px;" class="me-2">
+                        <img src="<?php echo BASE_URL . $logo_path; ?>" alt="<?php echo htmlspecialchars($site_name); ?>" style="height: 60px; width: auto; object-fit: contain;" class="flex-shrink-0">
                     <?php else: ?>
-                        <div class="brand-logo-container bg-success me-2" style="width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white;">
-                            <i class="fa-solid fa-heart-pulse" style="font-size: 0.9rem;"></i>
+                        <div class="brand-logo-container" style="width: 60px; height: 60px; min-width: 60px; min-height: 60px; background-color: var(--primary-blue); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-heart-pulse" style="font-size: 2rem; color: white;"></i>
                         </div>
-                        <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem;"><?php echo htmlspecialchars($site_name); ?></span>
                     <?php endif; ?>
+                    <span class="fw-bold text-dark font-heading" style="font-size: 1.05rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <?php echo htmlspecialchars($site_name); ?>
+                    </span>
                 </a>
             <?php endif; ?>
         </div>
@@ -215,17 +217,9 @@ $contact_email = $settings['contact_email'] ?? 'support@lurnixehealth.com';
                         }
                     }
                     ?>
-                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <?php if (isset($_SESSION['admin_id'])): ?>
-                            <a class="btn btn-primary btn-nav px-4 rounded-pill" href="<?php echo BASE_URL; ?>admin/dashboard.php">
-                                <i class="fa-solid fa-chart-line me-2"></i>Dashboard
-                            </a>
-                        <?php else: ?>
-                            <a class="btn btn-outline-primary btn-nav px-4 rounded-pill me-2 mb-2 mb-lg-0" href="<?php echo BASE_URL; ?>admin/login.php">
-                                <i class="fa-solid fa-lock me-2"></i>Login
-                            </a>
-                        <?php endif; ?>
-                    </li>
+                    <?php
+                    // Auth buttons removed as per user request
+                    ?>
                 </ul>
             </div>
         </div>

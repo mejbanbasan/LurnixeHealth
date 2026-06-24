@@ -755,8 +755,8 @@ if (empty($member_id)) {
                                 </div>
                             </div>
                             <div class="mt-3">
-                                <a href="<?php echo BASE_URL; ?>admin/generate-card.php?id=<?php echo urlencode($member['member_id']); ?>" class="btn btn-primary w-100 rounded-pill py-2 fw-bold">
-                                    <i class="fa-solid fa-file-pdf me-2"></i>Download Printed PDF Card
+                                <a href="<?php echo BASE_URL; ?>admin/generate-card.php?id=<?php echo urlencode($member['member_id']); ?>" target="_blank" class="btn btn-primary w-100 rounded-pill py-2 fw-bold">
+                                    <i class="fa-solid fa-id-card me-2"></i>View Health Card
                                 </a>
                             </div>
                         </div>

@@ -19,7 +19,8 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 </section>
 
-<section class="py-5">
+<!-- Professional Health Card Design Section -->
+<section class="py-5 py-md-8">
     <div class="container py-3">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6" data-aos="fade-right">
@@ -68,9 +69,98 @@ require_once __DIR__ . '/includes/header.php';
             </div>
             
             <div class="col-lg-6 text-center" data-aos="fade-left">
-                <!-- Card design preview -->
-                <div class="position-relative d-inline-block">
-                    <img src="<?php echo BASE_URL; ?>assets/images/pvc_card_final.jpg" alt="LurnixeHealth Finalized PVC Card Design" class="img-fluid rounded-4 shadow-lg border" style="max-width: 100%; border-color: rgba(0,0,0,0.08);">
+                <!-- Professional PVC Card Design (HTML + CSS) -->
+                <div class="pvc-card-wrapper mb-4">
+                    <!-- Card Front -->
+                    <div class="pvc-card pvc-front">
+                        <div class="pvc-shape-1"></div>
+                        <div class="pvc-shape-2"></div>
+                        
+                        <div class="pvc-header">
+                            <div class="pvc-logo">
+                                <div class="pvc-logo-icon">
+                                    <i class="fa-solid fa-heart-pulse"></i>
+                                </div>
+                                <div class="pvc-logo-text">
+                                    <h2 class="pvc-brand">LURNIXE</h2>
+                                    <p class="pvc-brand-sub">HEALTHCARE</p>
+                                </div>
+                            </div>
+                            <div class="pvc-member-id-badge">ID: LFC000521</div>
+                        </div>
+
+                        <div class="pvc-body">
+                            <div class="pvc-info">
+                                <h1 class="pvc-user-name">JOHN ALEXANDER DOE</h1>
+                                <div class="pvc-attributes">
+                                    <div class="pvc-attr">
+                                        <p class="pvc-attr-label">Blood Group</p>
+                                        <p class="pvc-attr-val">O+</p>
+                                    </div>
+                                    <div class="pvc-attr">
+                                        <p class="pvc-attr-label">Gender</p>
+                                        <p class="pvc-attr-val">Male</p>
+                                    </div>
+                                    <div class="pvc-attr">
+                                        <p class="pvc-attr-label">DOB</p>
+                                        <p class="pvc-attr-val">15 May 1990</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pvc-qr-container">
+                                <!-- Temporary static SVG for preview -->
+                                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="80" height="80" fill="white"/>
+                                    <rect width="16" height="16" fill="#1A5276"/>
+                                    <rect x="64" width="16" height="16" fill="#1A5276"/>
+                                    <rect y="64" width="16" height="16" fill="#1A5276"/>
+                                    <rect x="8" y="8" width="8" height="8" fill="white" opacity="0.5"/>
+                                    <rect x="72" y="8" width="8" height="8" fill="white" opacity="0.5"/>
+                                    <rect x="8" y="72" width="8" height="8" fill="white" opacity="0.5"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="pvc-footer">
+                            <span class="pvc-footer-text">www.lurnixehealth.com</span>
+                            <span class="pvc-validity">Valid Upto: 06/2027</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card Back Preview -->
+                <div class="pvc-card-wrapper">
+                    <div class="pvc-card pvc-back">
+                        <div class="pvc-shape-1" style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.2) 0%, rgba(41, 128, 185, 0.05) 100%); left: -50px; right: auto; filter: blur(40px);"></div>
+                        
+                        <div class="pvc-mag-stripe"></div>
+                        
+                        <div class="pvc-back-content">
+                            <div class="pvc-back-info">
+                                <div class="pvc-terms">
+                                    <strong>Terms & Conditions</strong><br>
+                                    This card remains the property of Lurnixe Health and must be returned upon request. It is non-transferable and can only be used by the registered member. Use of this card is governed by the prevailing terms and conditions of the Lurnixe Healthcare network. In case of emergency, please present this card to authorized medical personnel.<br><br>
+                                    If found, please return to:<br>
+                                    Lurnixe Health Headquarters, 123 Healthcare Ave, Medical District.
+                                </div>
+                                <div class="pvc-support">
+                                    <h4>Emergency Info</h4>
+                                    <div class="pvc-support-row">
+                                        <i class="fa-solid fa-phone"></i>
+                                        <div><strong>24/7 Helpline:</strong><br>+91-9876543210</div>
+                                    </div>
+                                    <div class="pvc-support-row">
+                                        <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+                                        <div><strong>Allergies:</strong><br>None Known</div>
+                                    </div>
+                                    <div class="pvc-support-row mt-3 text-center d-block">
+                                        <span style="font-family: 'Courier New', monospace; font-size: 16px; letter-spacing: 2px; color: #fff;">LFC000521</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

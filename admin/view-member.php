@@ -109,7 +109,7 @@ $status = strtolower($member['status']);
                         </button>
                         
                         <a href="generate-card.php?id=<?php echo urlencode($member['member_id']); ?>&t=<?php echo time(); ?>" target="_blank" class="btn btn-sm btn-success rounded-pill px-3">
-                            <i class="fa-solid fa-print me-1"></i> Print / PDF
+                            <i class="fa-solid fa-id-card me-1"></i> View Card
                         </a>
                         
                         <!-- Toggle actions based on current status -->
