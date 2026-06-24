@@ -69,51 +69,9 @@ require_once __DIR__ . '/includes/header.php';
             </div>
             
             <div class="col-lg-6 text-center" data-aos="fade-left">
-                                                <img src="<?php echo BASE_URL; ?>assets/images/new_pvc_card.jpg" class="img-fluid rounded shadow-lg" alt="Lurnixe Health Card Design" style="max-width: 100%; height: auto;">
-
-                        <div class="ref-back-content">
-                            <div class="ref-terms-container">
-                                <div class="ref-terms">
-                                    <h4>Terms & Conditions</h4>
-                                    <p>This health card is the property of Lurnixe Health and must be returned upon request. It is strictly non-transferable and can only be used by the registered member whose details appear on the front. Use of this card is governed by the prevailing terms and conditions of the Lurnixe Healthcare network.</p>
-                                    <p>Present this card at any partner hospital, clinic, or pharmacy to access your medical records instantly.</p>
-                                    <p style="margin-top: 15px;"><strong>If found, please return to:</strong><br>Lurnixe Health Headquarters, 123 Healthcare Ave, Medical District, City.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="ref-company-info">
-                                <div class="ref-info-block">
-                                    <h4><i class="fa-solid fa-headset"></i> Contact Support</h4>
-                                    <div class="ref-info-row">
-                                        <i class="fa-solid fa-phone"></i>
-                                        <div>
-                                            <strong>24/7 Helpline</strong>
-                                            +1 (800) 123-4567
-                                        </div>
-                                    </div>
-                                    <div class="ref-info-row">
-                                        <i class="fa-solid fa-envelope"></i>
-                                        <div>
-                                            <strong>Support Email</strong>
-                                            support@lurnixehealth.com
-                                        </div>
-                                    </div>
-                                    <div class="ref-info-row" style="margin-bottom: 0;">
-                                        <i class="fa-solid fa-globe"></i>
-                                        <div>
-                                            <strong>Website</strong>
-                                            www.lurnixehealth.com
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="ref-back-footer">
-                            <div class="ref-back-footer-text">Property of Lurnixe Health</div>
-                            <div class="ref-back-footer-text">Not valid as a national ID</div>
-                        </div>
-                    </div>
+                                                <!-- Professional PVC Card Image -->
+                <div class="card shadow-none border-0 bg-transparent text-center">
+                    <img src="<?php echo BASE_URL; ?>assets/images/new_pvc_card.png" class="img-fluid rounded shadow" alt="Lurnixe Health Card Design" style="max-width: 100%; height: auto; border-radius: 12px; margin-bottom: 2rem;">
                 </div>
             </div>
         </div>
